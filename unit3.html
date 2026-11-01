@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<title>Unit 3: IMFs, Solids & Gases</title>
+<style>
+:root{--bg:#0d0519;--p:#1f0c3d;--p2:#3b1873;--ln:#4b2490;--ac:#b98cff;--mu:#c6b0ee;--ok:#3ecf8e;--no:#ff6b81;--gold:#ffd27a;--mint:#7cffd8;--pink:#ff8fd8}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:radial-gradient(circle at 15% 10%,rgba(185,140,255,.14),transparent 40%),radial-gradient(circle at 85% 90%,rgba(130,60,230,.18),transparent 40%) fixed,var(--bg);color:#efe8ff;min-height:100vh;line-height:1.5}
+a{color:var(--ac)}
+header{position:sticky;top:0;z-index:9;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(31,12,61,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+.hl{display:flex;gap:12px;align-items:center}
+.logo{width:42px;height:42px;border-radius:12px;background:rgba(185,140,255,.18);border:1px solid var(--ac);display:grid;place-items:center;color:var(--ac);font-size:20px;box-shadow:0 0 16px rgba(185,140,255,.4);cursor:pointer;flex:0 0 auto}
+h1{font:800 20px 'Plus Jakarta Sans',system-ui,sans-serif;margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.unit-select{background:rgba(13,5,25,.85);color:var(--ac);border:1px solid var(--ac);padding:4px 8px;border-radius:8px;font:700 13px 'Plus Jakarta Sans',system-ui,sans-serif;cursor:pointer;outline:none;max-width:100%}
+.unit-select:focus{box-shadow:0 0 0 2px var(--ac)}
+.stats{display:flex;gap:16px;font:500 13px 'JetBrains Mono',monospace;background:rgba(13,5,25,.7);padding:8px 14px;border-radius:12px;border:1px solid var(--ln)}
+nav{display:flex;flex-wrap:wrap;gap:4px;padding:5px;background:rgba(13,5,25,.6);border:1px solid var(--ln);border-radius:12px}
+nav .tab{border:0;background:none;color:var(--mu);font:600 13px 'Plus Jakarta Sans',system-ui,sans-serif;padding:8px 12px;border-radius:99px;cursor:pointer}
+nav .tab:hover{color:#fff;background:rgba(185,140,255,.12)}
+nav .tab.on{background:var(--ac);color:#1a0833;box-shadow:0 0 14px rgba(185,140,255,.5)}
+#rt{max-width:1100px;margin:0 auto;padding:10px 16px}
+main{max-width:960px;margin:0 auto;padding-bottom:60px}
+.card{background:linear-gradient(160deg,rgba(59,24,115,.4),rgba(31,12,61,.92));border:1px solid var(--ln);border-radius:16px;padding:20px;margin:12px 0;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.fc{min-height:260px;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;text-align:center;font-size:19px;background:linear-gradient(145deg,#5a22b0,#1f0c3d);box-shadow:0 0 30px rgba(185,140,255,.25);animation:pop .25s}
+@keyframes pop{from{transform:scale(.97);opacity:.6}}
+.fc .t{font-size:26px;font-weight:800}
+.mu{color:var(--mu);font-size:14px}
+button{background:var(--p);color:#fff;border:1px solid var(--ln);border-radius:8px;padding:8px 14px;cursor:pointer;font-family:inherit;font-size:14px}
+button:hover{background:var(--p2)}
+button.on{background:var(--ac);color:#1a0833;font-weight:600}
+button:disabled{cursor:default}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.bar button,.row button,.chips button{border-radius:99px;font:600 13px 'Plus Jakarta Sans',system-ui,sans-serif}
+.opt{display:block;width:100%;text-align:left;margin:7px 0;border-radius:12px;padding:12px 16px;transition:transform .1s;font-size:15px}
+.opt:hover:not(:disabled){transform:translateX(4px);border-color:var(--ac)}
+.ok{background:#12503a!important;border-color:var(--ok)!important}
+.bad{background:#5a1c3c!important;border-color:var(--no)!important}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.bar{display:flex;flex-wrap:wrap;gap:6px;padding:6px 0}
+.tag{font:600 12px 'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ac);padding:2px 9px;border-radius:99px;background:rgba(185,140,255,.15);border:1px solid var(--ln);display:inline-block}
+.xtra{font:600 11px 'Plus Jakarta Sans',system-ui,sans-serif;color:var(--gold);padding:1px 8px;border-radius:99px;border:1px solid #ffb454;background:rgba(255,180,84,.12);margin-left:6px;white-space:nowrap}
+#flt summary{cursor:pointer;font-weight:600}
+input[type=text],input[type=number],textarea,select{padding:10px;border-radius:8px;border:1px solid var(--ln);background:var(--bg);color:#fff;font:inherit}
+input[type=text],textarea{width:100%;margin:8px 0}
+textarea{min-height:70px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pg{height:6px;background:#2a1050;border-radius:9px;margin:6px 0 2px;overflow:hidden}.pg i{display:block;height:100%;background:linear-gradient(90deg,#b98cff,#ff8fd8);transition:width .2s}
+/* notes */
+.sec{scroll-margin-top:120px}
+.sec h2{margin:0 0 4px;font-size:22px}.sec .code{font:500 12px 'JetBrains Mono',monospace;color:var(--ac);letter-spacing:.06em}
+.sec h3{margin:18px 0 6px;font-size:16px;color:var(--ac)}
+.sec ul,.sec ol{margin:4px 0 4px 20px;padding:0}.sec li{margin:4px 0}
+.sec b{color:#fff}
+.tip{margin:10px 0;padding:10px 14px;border-radius:10px;background:rgba(255,180,84,.1);border-left:4px solid #ffb454;font-size:14px}
+.tip::before{content:"Watch out: ";font-weight:800;color:var(--gold)}
+.ex{margin:10px 0;padding:10px 14px;border-radius:10px;background:rgba(62,207,142,.1);border-left:4px solid var(--ok);font-size:14px}
+.ex::before{content:"Example: ";font-weight:800;color:var(--mint)}
+.jt{margin:10px 0;padding:10px 14px;border-radius:10px;background:rgba(255,143,216,.08);border-left:4px solid var(--pink);font-size:14px}
+.jt::before{content:"AP justification: ";font-weight:800;color:var(--pink)}
+.eq{font:500 15px 'JetBrains Mono',monospace;color:var(--mint);background:rgba(13,5,25,.6);border:1px solid var(--ln);border-radius:8px;padding:2px 8px;white-space:nowrap}
+.eqb{display:block;text-align:center;font:500 17px 'JetBrains Mono',monospace;color:var(--mint);background:rgba(13,5,25,.6);border:1px solid var(--ln);border-radius:10px;padding:10px;margin:8px 0;overflow-x:auto}
+.cxs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.cx{display:inline-flex;gap:6px;align-items:center;font:600 12px 'Plus Jakarta Sans',system-ui,sans-serif;text-decoration:none;color:#e6d8ff;padding:3px 10px;border-radius:99px;border:1px dashed var(--ac);background:rgba(185,140,255,.08);cursor:pointer}
+.cx:hover{background:rgba(185,140,255,.22)}
+.tb{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0}
+.tb th,.tb td{padding:8px 10px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top}
+.tb th{color:var(--ac)}.tb td:first-child{font-weight:700;color:#fff}
+.tw{overflow-x:auto}
+/* glossary */
+.gg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.gt{background:var(--p);border:1px solid var(--ln);border-left:4px solid var(--ac);border-radius:10px;padding:10px 14px}
+.gt b{display:block;color:#fff}.gt span{color:var(--mu);font-size:14px}
+.gh{font:800 17px 'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ac);margin:24px 0 10px}
+/* compare */
+.cmp{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.cb{border-radius:12px;padding:10px 14px;background:rgba(13,5,25,.55);border:1px solid var(--ln);border-top:4px solid var(--c,#b98cff);font-size:14px}
+.cb b{display:block;font-size:15px;color:var(--c,#fff);margin-bottom:2px}
+.tell{margin-top:10px;font-size:14px;color:var(--mint)}.tell::before{content:"Quick tell: ";font-weight:800}
+/* connections */
+.cn{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.cc{background:rgba(13,5,25,.55);border:1px solid var(--ln);border-radius:12px;padding:12px 14px;font-size:14px}
+.cc .pair{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:6px;font-weight:700}
+.cc .pair i{color:var(--ac)}
+.cc .to{color:var(--pink)}
+/* tools */
+.wv{background:rgba(13,5,25,.6);border:1px solid var(--ln);border-radius:12px;padding:10px 14px;margin-top:10px}
+.big{font:800 28px 'JetBrains Mono',monospace;color:var(--mint)}
+.ans{margin-top:8px;padding:10px 14px;border-radius:10px;background:rgba(62,207,142,.1);border-left:4px solid var(--ok);font-size:14px}
+.ans.no{background:rgba(255,107,129,.1);border-left-color:var(--no)}
+.hide{display:none}
+input[type=range]{accent-color:#b98cff;width:100%}
+.ck{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:99px;border:1px solid var(--ln);background:var(--p);cursor:pointer;font:600 13px 'Plus Jakarta Sans',system-ui,sans-serif;user-select:none}
+.ck input{accent-color:#b98cff}
+.ck.ok,.ck.bad{color:#fff}
+.mol{font:700 18px 'JetBrains Mono',monospace;color:#fff}
+.sol{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.sol .wv{margin:0;text-align:center}
+.sol svg{width:100%;max-height:150px;display:block}
+.case{border-left:4px solid var(--pink)}
+.case ul{margin:6px 0 6px 18px;padding:0;font-size:14px}
+.cid{font:500 12px 'JetBrains Mono',monospace;color:var(--pink);letter-spacing:.06em}
+#gc{width:100%;height:220px;display:block;background:#0a0414;border:1px solid var(--ln);border-radius:10px}
+.meter{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:10px}
+.meter div{background:rgba(13,5,25,.6);border:1px solid var(--ln);border-radius:10px;padding:8px 12px}
+.meter b{display:block;font:800 20px 'JetBrains Mono',monospace;color:var(--mint)}
+.meter span{font-size:12px;color:var(--mu)}
+.slab{display:flex;justify-content:space-between;font-size:14px;margin-top:8px}
+.mb{width:100%;height:auto;display:block;background:#0a0414;border:1px solid var(--ln);border-radius:10px}
+.duel{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.duel button{padding:18px;font:700 20px 'JetBrains Mono',monospace;border-radius:14px}
+.steps{font-size:14px;margin:6px 0 0 18px;padding:0}.steps li{margin:3px 0}
+@media(max-width:640px){header{position:static}.grid,.duel{grid-template-columns:1fr}h1{font-size:18px}.card{padding:16px}.stats{gap:10px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hl">
+    <div class="logo" title="Notes" onclick="setMode('notes')"><i class="fa-solid fa-flask"></i></div>
+    <div>
+      <h1>ChemMaster
+        <select id="unitSel" class="unit-select" onchange="switchUnit(this.value)" aria-label="Switch unit">
+          <option value="unit1" disabled>Unit 1: Atomic Structure (not built)</option>
+          <option value="unit2" disabled>Unit 2: Compounds &amp; Bonding (not built)</option>
+          <option value="unit3" selected>Unit 3: IMFs, Solids &amp; Gases</option>
+          <option value="unit4" disabled>Unit 4: Reactions (Locked)</option>
+          <option value="unit5" disabled>Unit 5: Kinetics (Locked)</option>
+        </select>
+      </h1>
+      <div class="mu">AP Chemistry Study Suite · 3.1 IMFs · 3.2 Solids · 3.3 States · 3.4 Gas Laws · 3.5 KMT · 3.6 Real Gases</div>
+    </div>
+  </div>
+  <div class="stats" id="cnt"></div>
+  <nav id="modes" aria-label="Study modes"></nav>
+</header>
+
+<div id="rt">
+  <details open class="card" id="flt">
+    <summary><i class="fa-solid fa-sliders"></i> Scope &amp; Filters</summary>
+    <div class="bar" id="scope"></div>
+    <div class="bar" id="cats"></div>
+  </details>
+  <main id="main"></main>
+</div>
+
+<script>
+function switchUnit(v){window.location.href=v+".html"}
+
+const KEY="cm_unit3_missed";
+const C={
+  I:"3.1 Intra vs. Intermolecular",
+  F:"3.1 Types of IMFs",
+  S:"3.1 IMF Strength & Properties",
+  T:"3.2 Types of Solids",
+  M:"3.3 States of Matter",
+  G:"3.4 Gas Variables & Laws",
+  D:"3.4 Dalton's Law",
+  K:"3.5 Kinetic Molecular Theory",
+  N:"3.6 Real Gases",
+  L:"Labs & Lab Math",
+  X:"3.7–3.13 Preview"
+};
+
+/* [term, category, definition, 1 = beyond your handouts] */
+const D=[
+["Intramolecular force","I","An attraction <i>within</i> a compound that holds atoms together: a covalent, ionic, or metallic bond. Breaking one is a chemical change."],
+["Intermolecular force (IMF)","I","An attraction <i>between</i> separate molecules. Overcoming IMFs (melting, boiling) is a physical change, and the molecules stay intact."],
+["Coulomb's law","I","F ∝ q₁q₂/r². Force grows with charge magnitude and shrinks with distance. It explains why bonds (full charges, short distance) beat IMFs (partial charges, longer distance)."],
+["Bonds vs. IMFs energy example","I","Vaporizing 1 mol of water takes about 41 kJ (breaking IMFs). Breaking all the O–H bonds in 1 mol of water takes about 938 kJ."],
+["Solid vs. dashed lines","I","In particulate drawings, bonds are drawn as solid lines and IMFs (like hydrogen bonds) as dashed or dotted lines between molecules."],
+["Ionic bond","I","Electrostatic attraction between cations and anions, typically a metal plus a nonmetal (e.g., NaCl, LiCl)."],
+["Metallic bond","I","Attraction between metal cations and a delocalized “sea” of valence electrons. Found in pure metals and alloys (e.g., Hg, Cu, brass)."],
+["Covalent bond","I","A shared pair of electrons between two nonmetal atoms. Inside molecular substances, or extended in a network solid."],
+["Dipole","F","A molecule (or bond) with a partially positive end (δ⁺) and a partially negative end (δ⁻) caused by unequal sharing of electrons."],
+["Partial charges (δ⁺, δ⁻)","F","Symbols showing which end of a polar bond or molecule is electron-poor (δ⁺) or electron-rich (δ⁻). The more electronegative atom gets δ⁻."],
+["Polar molecule","F","A molecule with a net dipole: polar bonds arranged asymmetrically (often lone pairs on the central atom), e.g., H₂O, NH₃, CH₃Cl, SF₄."],
+["Nonpolar molecule","F","A molecule with no net dipole: equal sharing or symmetric geometry that cancels bond dipoles, e.g., CO₂, CH₄, BF₃, CCl₄, I₂."],
+["London dispersion forces (LDF)","F","Attractions between temporary, fluctuating dipoles caused by momentary uneven electron distribution. Present in ALL molecules and atoms. The only IMF in nonpolar molecules and noble gases."],
+["Temporary (instantaneous) dipole","F","A momentary dipole that forms when electrons happen to bunch up on one side of an atom or molecule. It can induce a dipole in a neighbor."],
+["Induced dipole","F","A dipole created in a neighboring particle when a nearby charge or dipole distorts its electron cloud."],
+["Dipole–dipole force","F","Attraction between the δ⁺ end of one polar molecule and the δ⁻ end of another. Acts in addition to LDF, so polar molecules usually beat nonpolar ones of similar size."],
+["Hydrogen bonding","F","An especially strong dipole–dipole attraction between an H covalently bonded to F, O, or N and a lone pair on an F, O, or N of another molecule (or another part of the same molecule)."],
+["FON rule","F","Hydrogen bonding requires H bonded <i>directly</i> to F, O, or N. CH₂F₂ has F but its H atoms are on C, so it can't H-bond with itself."],
+["Ion–dipole force","F","Attraction between an ion and a polar molecule, like Na⁺ surrounded by the δ⁻ oxygen ends of water. Usually stronger than dipole–dipole."],
+["Dipole–induced dipole force","F","Attraction between a polar molecule and a nonpolar molecule whose electron cloud the dipole distorts. Grows with the dipole's size and the nonpolar molecule's polarizability.",1],
+["Van der Waals forces","F","An umbrella term for weak IMFs (LDF, dipole–dipole, dipole–induced dipole). The AP course says not to use it as a synonym for LDF.",1],
+["Polarizability","S","How easily an electron cloud can be distorted. It increases with more electrons, a larger electron cloud, and pi bonding. More polarizable → stronger LDF."],
+["Contact (surface) area","S","How much of two molecules can touch. Long, straight chains have more contact area than compact, branched isomers, so stronger LDF (n-pentane boils at 309 K, 2-methylbutane at 301 K)."],
+["Dipole moment","S","A measure of how polar a molecule is. Larger dipole moment (bigger electronegativity difference) → stronger dipole–dipole forces (H–Cl beats H–Br)."],
+["Boiling point","S","Temperature where vapor pressure equals the surrounding pressure. Stronger IMFs → more energy needed to separate molecules → higher boiling point."],
+["Vapor pressure","S","Pressure of the vapor above a liquid at equilibrium. Stronger IMFs → fewer molecules escape → LOWER vapor pressure. Inverse of boiling point trends."],
+["Volatility","S","How easily a substance evaporates. Weak IMFs → high volatility (e.g., C₆H₁₄ evaporates faster than C₈H₁₇OH)."],
+["Melting point","S","Correlates with IMF/bond strength, but less cleanly than boiling point, because melting only rearranges interactions and depends on how particles pack."],
+["Like dissolves like","S","Substances with similar IMFs mix. Polar/ionic dissolve in polar solvents (water). Nonpolar dissolve in nonpolar solvents (CCl₄, hexane). Alcohols dissolve both polar and nonpolar molecules."],
+["Miscible","S","Two liquids that mix in all proportions because their IMFs are similar (e.g., water and ethanol).",1],
+["Hydration (ion orientation)","S","Water molecules surround dissolved ions: the δ⁻ O faces cations (Na⁺) and the δ⁺ H atoms face anions (F⁻, Cl⁻)."],
+["Charge density","S","Ion charge relative to size. Higher charge and smaller radius → stronger ion–dipole attraction (Mg²⁺ > Ca²⁺ > Na⁺ > K⁺ with water).",1],
+["Enthalpy of fusion","S","Energy needed to melt one mole of a solid. Larger values signal stronger attractive forces."],
+["Enthalpy of vaporization","S","Energy needed to vaporize one mole of a liquid (≈41 kJ/mol for water). Reflects IMF strength.",1],
+["Surface tension","S","The resistance of a liquid's surface to stretching, due to IMFs pulling surface molecules inward. Water's is high from hydrogen bonding.",1],
+["Viscosity","S","Resistance to flow. Stronger IMFs and long tangling molecules → more viscous (e.g., glycerol, honey).",1],
+["Noncovalent interactions in biomolecules","S","IMFs (H-bonds, LDF, dipole forces) between parts of large molecules like proteins and DNA set their shape and function."],
+["Ionic solid","T","Lattice of cations and anions held by ionic bonds. High MP, hard and brittle, does not conduct as a solid but conducts when molten or dissolved. Often water soluble. Ex: NaCl, MgO, Na₂SO₄."],
+["Metallic solid","T","Metal cations in a sea of delocalized electrons. Conducts heat and electricity as a solid, malleable, ductile, lustrous, wide MP range. Ex: Cu, Al, Rh."],
+["Covalent network solid","T","Atoms covalently bonded in a continuous 3-D (or layered 2-D) network, no discrete molecules. Very high MP, hard, insoluble, usually nonconducting. Ex: diamond, SiO₂, SiC, BN."],
+["Molecular solid","T","Discrete molecules held by IMFs only. Low MP, soft, nonconducting (electrons are localized in bonds and lone pairs). Ex: ice, I₂, dry ice (CO₂), naphthalene."],
+["Network solid elements","T","Network solids form only from nonmetals: elemental C (diamond, graphite) and Si, or binary nonmetal compounds such as SiO₂, SiC, BN."],
+["Diamond","T","3-D carbon network where each C bonds to four others. Fixed bond angles make it rigid and extremely hard."],
+["Graphite","T","Layers of 2-D carbon networks. Layers slide past each other (soft, slippery), and delocalized pi electrons let it conduct within layers."],
+["Brittleness of ionic solids","T","When one layer shifts, like charges line up and repel, so the crystal shatters instead of bending."],
+["Malleability & ductility","T","Metals can be hammered into sheets or drawn into wire because cations shift without breaking the electron sea."],
+["Electron sea model","T","Model of metallic bonding: valence electrons are delocalized across the whole solid. Explains conductivity and malleability. Conduction is electron flow, not atoms moving."],
+["Alloy","T","A mixture of metals (or metal plus another element) that keeps a sea of electrons, so it still conducts. Ex: brass (Cu₃Zn₂), steel."],
+["Substitutional alloy","T","Atoms of similar size replace host atoms in the lattice (e.g., Zn in Cu for brass). Stays fairly malleable.",1],
+["Interstitial alloy","T","Small atoms (like C in Fe for steel) fill the gaps between host atoms. Makes the lattice more rigid: less malleable and ductile."],
+["Lattice","T","The regular, repeating 3-D arrangement of particles in a crystalline solid."],
+["Formula unit","T","The simplest ratio of ions in an ionic lattice (NaCl). There is no discrete “NaCl molecule.”"],
+["Melting (physical change)","T","Melting overcomes the weakest attractions in the solid but leaves the chemical formula unchanged: H₂O(s) → H₂O(l)."],
+["Conductivity test","T","The key evidence for ionic vs. molecular: an ionic compound's aqueous solution or melt conducts because ions are mobile. Testing the solid alone doesn't distinguish them."],
+["Sublimation","T","Solid turning directly into gas, such as dry ice (CO₂) at −78.5 °C at 1 atm, or I₂ releasing purple vapor. Overcomes IMFs, not covalent bonds."],
+["Crystalline solid","M","Particles arranged in a regular, repeating 3-D pattern. Sharp melting point. Ex: NaCl, quartz, ice."],
+["Amorphous solid","M","Particles with no long-range order, like glass or many plastics. Softens over a range of temperatures."],
+["Solid (particle view)","M","Particles in fixed positions, vibrating in place with no overall translation. Definite shape and volume."],
+["Liquid (particle view)","M","Particles in close contact but constantly moving past and colliding with each other. Definite volume, no definite shape."],
+["Gas (particle view)","M","Particles far apart in constant random motion with minimal IMFs. No definite shape or volume. Collision frequency depends on T, P, and V."],
+["Similar molar volume (s vs l)","M","A substance's solid and liquid occupy nearly the same volume per mole because particles are in close contact in both phases."],
+["Pressure (P)","G","Force per area from gas particles hitting container walls. Units: atm, mmHg, torr, kPa. 1 atm = 760 mmHg = 760 torr = 101.3 kPa."],
+["Volume (V)","G","Space the gas occupies, which equals the container's volume. Use liters with PV = nRT. 1 L = 1000 mL; 1 mL = 1 cm³."],
+["Temperature (T)","G","Must be in kelvins for every gas calculation. K = °C + 273.15. Kelvin is proportional to average kinetic energy."],
+["Amount (n)","G","Moles of gas. n = mass ÷ molar mass. 1 mol = 6.022 × 10²³ particles."],
+["Absolute zero","G","0 K (−273.15 °C), the theoretical temperature where particle motion stops. No negative Kelvin values, so gas laws stay proportional."],
+["Barometer","G","Inverted mercury tube (Torricelli) used to measure atmospheric pressure, giving the unit mmHg, also called torr."],
+["STP","G","Standard temperature and pressure: 273.15 K (0 °C) and 1 atm. One mole of any ideal gas occupies 22.4 L at STP."],
+["Rigid container","G","A container whose volume cannot change. Volume is constant in the calculation."],
+["Ideal gas law","G","PV = nRT. Use it when conditions are NOT changing (one set of values). R = 0.08206 L·atm/(mol·K) or 8.314 L·kPa/(mol·K)."],
+["Gas constant (R)","G","0.08206 L·atm/(mol·K) or 8.314 L·kPa/(mol·K). Pick the R whose pressure unit matches your pressure."],
+["Combined gas law","G","P₁V₁/(n₁T₁) = P₂V₂/(n₂T₂). Use when conditions change. Cancel any variable held constant. On the AP reference sheet."],
+["Boyle's law","G","P₁V₁ = P₂V₂ at constant n and T. Pressure and volume are inversely proportional (marshmallow in a syringe)."],
+["Charles's law","G","V₁/T₁ = V₂/T₂ at constant n and P. Volume and Kelvin temperature are directly proportional (balloon on a heated flask)."],
+["Gay-Lussac's law","G","P₁/T₁ = P₂/T₂ at constant n and V. Pressure and Kelvin temperature are directly proportional (can crush)."],
+["Avogadro's law","G","V₁/n₁ = V₂/n₂ at constant P and T. Volume and moles are directly proportional. Equal volumes of gases at the same T and P hold equal numbers of particles."],
+["Molar volume","G","Volume of one mole of gas: 22.4 L/mol at STP for any ideal gas, regardless of identity."],
+["Molar mass form of ideal gas law","G","PV = (m/M)RT, so M = mRT/(PV). Used to identify an unknown gas from its mass."],
+["Gas density formula","G","M = DRT/P, or D = PM/(RT). At the same T and P, the heavier gas is denser. Not on the reference sheet directly."],
+["Directly proportional","G","Both variables rise and fall together at the same rate; graph is a straight line with positive slope (V vs. T, P vs. T, V vs. n)."],
+["Inversely proportional","G","One rises as the other falls; graph is a curve with negative slope (P vs. V)."],
+["Dalton's law of partial pressures","D","P_total = P_A + P_B + P_C + …. Each gas in a mixture exerts its own pressure, independent of the others."],
+["Partial pressure","D","The pressure one gas in a mixture would exert if it were alone in the container. P_A = X_A · P_total."],
+["Mole fraction (X)","D","X_A = moles of A ÷ total moles. Unitless; all mole fractions in a mixture sum to 1."],
+["Equal masses trap","D","Equal masses of different gases do NOT mean equal partial pressures. The lighter gas has more moles, so more pressure. It depends on molar masses."],
+["Collecting gas over water","D","Gas collected by water displacement is mixed with water vapor. P_gas = P_total (barometric) − P_H₂O (from a vapor-pressure table, depends only on T)."],
+["Kinetic molecular theory (KMT)","K","Five postulates explaining ideal gas behavior at the particle level: random motion, mostly empty space, pressure from wall collisions, no IMFs and elastic collisions, KE ∝ T."],
+["KMT postulate 1: random motion","K","Gas particles are in constant, random, straight-line motion and collide with each other and the container."],
+["KMT postulate 2: negligible volume","K","Particles are tiny and far apart, so the gas is mostly empty space. Explains why gases compress easily."],
+["KMT postulate 3: pressure","K","Pressure comes from particles colliding with container walls. More frequent or more forceful collisions → higher pressure."],
+["KMT postulate 4: no attractions","K","Ideal gas particles have no IMFs, and collisions are elastic (no net kinetic energy lost)."],
+["KMT postulate 5: KE ∝ T","K","Average kinetic energy is proportional to Kelvin temperature. Gases at the same T have the same average KE regardless of identity."],
+["Elastic collision","K","A collision where total kinetic energy is conserved. Ideal gas particles don't slow down overall from colliding."],
+["Kinetic energy","K","KE = ½mv². At the same KE (same T), lighter particles (smaller m) must move faster (larger v)."],
+["Maxwell–Boltzmann distribution","K","Graph of the number of particles vs. speed (or energy) at a given T. Shows a spread of speeds, not one speed."],
+["Effect of temperature on M–B curve","K","Higher T → curve shifts right, peak gets lower and broader (more particles moving faster). Area stays the same (same number of particles)."],
+["Effect of molar mass on M–B curve","K","At the same T, a heavier gas has a taller, narrower curve at lower speeds. A lighter gas (H₂, He) has a flatter curve shifted to higher speeds."],
+["Most probable speed","K","The speed at the peak of the M–B curve. Increases with T and decreases with molar mass (∝ √(T/M)).",1],
+["Effusion / Graham's law","K","Lighter gases escape through tiny holes faster: rate₁/rate₂ = √(M₂/M₁). No longer a required AP calculation.",1],
+["Ideal gas","N","A hypothetical gas that follows KMT exactly: no particle volume and no attractions. Real gases come close at high T and low P."],
+["Real (non-ideal) gas","N","A gas that deviates from PV = nRT, mostly at HIGH pressure and LOW temperature (conditions near condensation)."],
+["Deviation from attractions","N","When particles are slow and close, IMFs pull them together. They hit the walls less often and less hard, so real P (and V) is LOWER than ideal."],
+["Deviation from particle volume","N","At very high pressure, particle volume is no longer negligible. Less free space, so real V (or P) is HIGHER than predicted."],
+["Which gas deviates more?","N","The one with stronger IMFs (polar, H-bonding, or many electrons) or larger particles. NO₂ (polar) deviates more than CO₂ (nonpolar) of similar mass."],
+["Van der Waals equation","N","[P + a(n/V)²](V − nb) = nRT. 'a' corrects for attractions; 'b' corrects for particle volume. Not tested, but explains both deviations.",1],
+["Eudiometer","L","A graduated gas-collection tube used upside down in water to collect gas by water displacement (Cage of Death lab)."],
+["Water displacement","L","Collecting a gas by letting it push water out of an inverted tube. The collected gas contains water vapor."],
+["Equalizing water levels","L","Raise or lower the eudiometer so the water inside matches the outside level. Then the gas pressure inside equals barometric pressure."],
+["Vapor pressure of water","L","Depends only on temperature (≈19.8 mmHg at 22 °C, 23.8 mmHg at 25 °C). Subtract it from barometric pressure to get the dry gas pressure."],
+["Molar volume experiment","L","Mg(s) + 2HCl(aq) → MgCl₂(aq) + H₂(g). Measure H₂ volume, correct P with Dalton and V to STP with the combined gas law, then divide by moles."],
+["Limiting reactant in Cage of Death","L","Mg is limiting (HCl in excess), so moles of H₂ = moles of Mg. Theoretical mass from ribbon length: 1 m of Mg ≈ 0.921 g."],
+["Percent error","L","|experimental − theoretical| ÷ theoretical × 100%."],
+["Molar mass by gas density lab","L","Weigh a flask with air, then with unknown gas at the same T and P. Mass of gas ÷ moles (from PV = nRT) gives molar mass."],
+["Solution","X","A homogeneous mixture: properties are the same throughout. Can be solid, liquid, or gas.",1],
+["Heterogeneous mixture","X","A mixture whose properties vary from place to place.",1],
+["Molarity (M)","X","Moles of solute ÷ liters of solution. The most common lab concentration unit.",1],
+["Chromatography","X","Separates components by differences in IMF attraction to a mobile phase vs. a stationary phase (paper, thin-layer, column).",1],
+["Distillation","X","Separates liquids by differences in IMFs and vapor pressure: the more volatile component boils off first.",1],
+["Spectroscopy regions","X","Microwave → rotational transitions; infrared → vibrational transitions; UV/visible → electronic transitions.",1],
+["Photon energy","X","E = hν and c = λν. Shorter wavelength → higher frequency → more energy.",1],
+["Beer–Lambert law","X","A = εbc. Absorbance is proportional to concentration when path length and wavelength are fixed.",1]
+];
+
+/* ---------- utilities ---------- */
+const $=id=>document.getElementById(id);
+const sh=a=>{a=[...a];for(let i=a.length;i>1;){let j=Math.random()*i--|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const X=d=>d[3]?'<span class="xtra" title="Not on your class handouts, but useful for the AP exam">★ beyond handouts</span>':"";
+function loadMiss(){try{return new Set(JSON.parse(localStorage.getItem(KEY)||"[]"))}catch(e){return new Set()}}
+function saveMiss(){try{localStorage.setItem(KEY,JSON.stringify([...miss]))}catch(e){}}
+const cx=(label,id)=>`<a class="cx" onclick="goNote('${id}')"><i class="fa-solid fa-link"></i>${label}</a>`;
+function goNote(id){mode="notes";go();setTimeout(()=>{const e=$(id);if(e)e.scrollIntoView({behavior:"smooth"})},40)}
+
+let mode="notes",scope="all",cats=new Set(Object.keys(C)),miss=loadMiss(),missOnly=false;
+const MODES={notes:"Notes",gloss:"Glossary",cmp:"Compare",conn:"Connections",imf:"IMF Finder",duel:"BP Duel",solids:"Solids Lab",gas:"Gas Lab",calc:"Calc Drill",flash:"Flashcards",quiz:"Quiz",match:"Matching",type:"Type-In",app:"Practice MCQ",frq:"FRQ Practice"};
+const IC={notes:"book",gloss:"book-open",cmp:"code-compare",conn:"diagram-project",imf:"magnet",duel:"temperature-high",solids:"cubes",gas:"wind",calc:"calculator",flash:"clone",quiz:"list-check",match:"puzzle-piece",type:"keyboard",app:"lightbulb",frq:"file-pen"};
+const TERM_MODES=["gloss","flash","quiz","match","type"];
+
+function pool(n){let p=sh(D.map((d,k)=>k).filter(k=>cats.has(D[k][1])&&(!missOnly||miss.has(D[k][0]))));return scope=="rand"?p.slice(0,n):p}
+
+function bar(){
+  $("modes").innerHTML=Object.keys(MODES).map(k=>`<button class="tab ${k==mode?"on":""}" onclick="setMode('${k}')"><i class="fa-solid fa-${IC[k]}"></i> ${MODES[k]}</button>`).join("");
+  $("flt").style.display=TERM_MODES.includes(mode)?"":"none";
+  $("scope").innerHTML=[["rand","Random 10"],["all","All Terms"]].map(([k,v])=>`<button class="${k==scope?"on":""}" onclick="scope='${k}';go()">${v}</button>`).join("")+`<button class="${missOnly?"on":""}" onclick="missOnly=!missOnly;go()">Missed (${miss.size})</button>`+(miss.size?`<button onclick="miss.clear();saveMiss();missOnly=false;go()">Clear missed</button>`:"");
+  $("cats").innerHTML=`<button onclick="cats=new Set(Object.keys(C));go()">All Categories</button>`+Object.entries(C).map(([k,v])=>`<button class="${cats.has(k)?"on":""}" onclick="tog('${k}')">${v}</button>`).join("");
+  $("cnt").innerHTML=`<span><i class="fa-solid fa-circle-check" style="color:#3ecf8e"></i> Terms: ${D.filter(d=>cats.has(d[1])).length}</span><span><i class="fa-solid fa-triangle-exclamation" style="color:#ffb454"></i> Missed: ${miss.size}</span>`;
+}
+function setMode(k){mode=k;go();window.scrollTo({top:0})}
+function tog(k){cats.has(k)?cats.delete(k):cats.add(k);if(!cats.size)cats.add(k);go()}
+function addMiss(k){miss.add(D[k][0]);saveMiss()}
+function delMiss(k){miss.delete(D[k][0]);saveMiss()}
+
+let Q=[],i=0,sc=0,flip=false,rv=false;
+function go(){
+  bar();stopGas();
+  Q=pool(mode=="match"?6:10);i=0;sc=0;flip=false;
+  if(TERM_MODES.includes(mode)&&mode!=="gloss"&&!Q.length){$("main").innerHTML='<div class="card">No terms match your filters. Turn on more categories or switch off "Missed" to continue.</div>';return}
+  ({notes,gloss,cmp,conn,imf,duel,solids,gas,calc,flash,quiz,match,type:typ,app,frq})[mode]();
+}
+function prog(){return `<div class="pg"><i style="width:${Q.length?i/Q.length*100:0}%"></i></div>`}
+function done(){
+  $("main").innerHTML=`<div class="card"><h2>Session complete</h2><p>Score: <b>${sc}</b> / ${Q.length}</p><p class="mu">${miss.size?`${miss.size} term(s) are saved in your Missed list. Tap "Missed" in the filters to drill only those.`:"No missed terms. Nice work."}</p><div class="row"><button class="on" onclick="go()">Restart</button><button onclick="missOnly=true;go()">Drill missed</button></div></div>`;
+  bar();
+}
+
+/* ---------- NOTES ---------- */
+const NOTES=[
+{id:"n31a",code:"3.1 · INTRA VS. INTER",t:"Bonds vs. Intermolecular Forces",h:`
+<p><b>Intra</b>molecular forces act <i>inside</i> a substance and hold atoms together (bonds). <b>Inter</b>molecular forces act <i>between</i> separate molecules and make them “stick.” The bonds <i>inside</i> a molecule decide its polarity, and polarity decides the IMFs <i>outside</i> it.</p>
+<h3>Bonds or IMFs? Sort the substance first</h3>
+<div class="tw"><table class="tb"><tr><th>Type</th><th>Particles</th><th>What holds it together</th><th>Typical state</th></tr>
+<tr><td>Ionic</td><td>Cation + anion (metal + nonmetal)</td><td>Ionic bonds</td><td>Solid</td></tr>
+<tr><td>Metallic</td><td>Metals only</td><td>Metallic bonds (electron sea)</td><td>Solid (Hg is a liquid)</td></tr>
+<tr><td>Covalent network</td><td>Only C, or Si &amp; O, or B &amp; N (also SiC)</td><td>Covalent bonds throughout</td><td>Solid</td></tr>
+<tr><td>Molecular: H-bonding</td><td>H bonded to F, O, N</td><td>IMFs</td><td>Often liquid</td></tr>
+<tr><td>Molecular: polar</td><td>Polar molecules</td><td>IMFs (dipole–dipole)</td><td>Often liquid or gas</td></tr>
+<tr><td>Molecular: nonpolar</td><td>Nonpolar molecules, noble gases</td><td>IMFs (LDF only)</td><td>Often gas</td></tr></table></div>
+<div class="ex">Hg → metallic bonds (liquid). LiCl → ionic bonds (solid). H₂O → H-bonding IMFs (liquid). HCl → dipole–dipole IMFs (gas). Ne → LDF only (gas). BN → covalent network (solid).</div>
+<h3>Why bonds are stronger: Coulomb's law</h3>
+<div class="eqb">F ∝ q₁q₂ / r²</div>
+<ul><li><b>q</b>: IMFs come from <i>partial</i> charges (permanent or induced dipoles), which are much smaller than the full charges or shared pairs in bonds.</li>
+<li><b>r</b>: the distance between molecules is larger than the distance between bonded atoms.</li></ul>
+<div class="ex">About <b>41 kJ</b> vaporizes 1 mol of water (overcoming IMFs), but about <b>938 kJ</b> breaks all the O–H bonds in 1 mol of water.</div>
+<p>Drawing convention: <b>bonds = solid lines</b>, <b>IMFs = dashed/dotted lines</b>.</p>
+<div class="tip">Boiling water does <i>not</i> make H₂ and O₂. The bubbles are H₂O(g). Phase changes break IMFs, never the covalent bonds inside molecules.</div>
+<div class="cxs">${cx("3.2 · Types of solids","n32")}${cx("3.3 · States of matter","n33")}</div>`},
+
+{id:"n31b",code:"3.1 · TYPES OF IMFs",t:"The IMF Family",h:`
+<h3>Step-by-step: which IMFs are present?</h3>
+<ol><li>Is it ionic, metallic, or a network solid? Then it's held by <b>bonds</b>, not IMFs.</li>
+<li>Every molecule and atom has <b>London dispersion forces</b>.</li>
+<li>Is the molecule <b>polar</b> (draw Lewis structure → VSEPR shape → do dipoles cancel)? Add <b>dipole–dipole</b>.</li>
+<li>Is there an <b>H bonded directly to F, O, or N</b>? Add <b>hydrogen bonding</b>.</li>
+<li>Is an <b>ion</b> mixed with a polar molecule (salt in water)? Add <b>ion–dipole</b>.</li></ol>
+<div class="tw"><table class="tb"><tr><th>IMF</th><th>Between</th><th>Origin</th><th>Relative strength</th></tr>
+<tr><td>London dispersion (LDF)</td><td>All molecules/atoms</td><td>Temporary, fluctuating dipoles that induce dipoles in neighbors</td><td>Weakest per contact, but grows with size; often the largest <i>net</i> force for big molecules</td></tr>
+<tr><td>Dipole–induced dipole</td><td>Polar + nonpolar</td><td>Permanent dipole distorts a neighbor's cloud</td><td>Weak</td></tr>
+<tr><td>Dipole–dipole</td><td>Polar + polar</td><td>δ⁺ end attracts δ⁻ end</td><td>Moderate (adds to LDF)</td></tr>
+<tr><td>Hydrogen bond</td><td>H–F, H–O, H–N + lone pair on F/O/N</td><td>Very strong dipole; tiny H nearly exposed</td><td>Strong for an IMF, but still far weaker than a bond</td></tr>
+<tr><td>Ion–dipole</td><td>Ion + polar molecule</td><td>Full charge attracts partial charge</td><td>Strongest IMF listed</td></tr></table></div>
+<h3>London dispersion forces</h3>
+<ul><li>Key word: <b>polarizability</b>. Electrons momentarily bunch up, making an instantaneous dipole that induces one next door.</li>
+<li>The only IMF in nonpolar molecules (H₂, O₂, F₂, CO₂, CH₄) and noble gases (Ne, Ar). That's why small nonpolar molecules are usually <b>gases</b> at room temperature.</li></ul>
+<h3>Dipole–dipole</h3>
+<ul><li>Polar molecules line up so δ⁺ faces δ⁻ (attraction). δ⁺ facing δ⁺ is repulsion, but the net effect is attraction.</li>
+<li>The larger the dipole moment, the stronger the force. H–Cl (ΔEN 0.9) beats H–Br (ΔEN 0.7).</li></ul>
+<h3>Hydrogen bonding</h3>
+<ul><li>Requires H bonded <i>directly</i> to <b>F, O, or N</b>, attracted to a lone pair on F/O/N of another molecule.</li>
+<li>More H-bonding sites per molecule → stronger attractions (glycerol > ethylene glycol > ethanol).</li>
+<li>A hydrogen bond is <b>not</b> a covalent bond. Covalent bond = shared electron pair inside a molecule. H-bond = electrostatic attraction between molecules.</li></ul>
+<div class="tip">CH₂F₂ and CH₃F contain F, but their H atoms are bonded to C, so they <i>cannot</i> H-bond with each other (only dipole–dipole + LDF). HClO <i>can</i> H-bond: its H is on O (H–O–Cl).</div>
+<div class="ex">Acetic acid (CH₃COOH) has LDF, dipole–dipole, and H-bonding. The O–H hydrogen of one molecule bonds to the C=O oxygen of another.</div>
+<div class="cxs">${cx("3.1 · Strength factors","n31c")}${cx("3.1 · Ion–dipole & solubility","n31d")}</div>`},
+
+{id:"n31c",code:"3.1 · STRENGTH & PROPERTIES",t:"Comparing IMF Strength",h:`
+<h3>Stronger IMFs mean…</h3>
+<div class="tw"><table class="tb"><tr><th>Property</th><th>Stronger IMFs</th><th>Why</th></tr>
+<tr><td>Boiling point</td><td>Higher ↑</td><td>More energy needed to pull molecules apart</td></tr>
+<tr><td>Melting point</td><td>Usually higher ↑</td><td>Packing also matters, so trends are messier</td></tr>
+<tr><td>Vapor pressure</td><td>Lower ↓</td><td>Fewer molecules have enough KE to escape</td></tr>
+<tr><td>Evaporation rate</td><td>Slower ↓</td><td>Same reason as vapor pressure</td></tr>
+<tr><td>Enthalpy of vaporization/fusion</td><td>Larger ↑</td><td>More energy per mole to overcome attractions</td></tr></table></div>
+<h3>Factors that change LDF strength</h3>
+<ul><li><b>More electrons / bigger cloud</b> → more polarizable → stronger LDF. CH₄ &lt; C₂H₆; F₂ &lt; Cl₂ &lt; Br₂ &lt; I₂ (gas, gas, liquid, solid); He &lt; Ne &lt; Ar &lt; Xe.</li>
+<li><b>Shape / contact area</b> (same formula): straight chains touch more than branched. n-pentane (bp 309 K) &gt; 2-methylbutane (301 K) &gt; 2,2-dimethylpropane (283 K).</li>
+<li><b>Pi bonding</b> increases polarizability.</li></ul>
+<h3>When size beats polarity</h3>
+<p>Molecules with only LDF usually have the lowest boiling points, but not always. A huge nonpolar molecule can out-attract a small polar one.</p>
+<div class="ex">Candle wax (C₂₅H₅₂, LDF only) is a solid, yet water (H-bonding + dipole + LDF) is a liquid. Wax has so many electrons (and so much contact area) that its total LDF outweighs water's H-bonds.</div>
+<div class="ex">Cl₂ (bp 238 K, 34 e⁻, nonpolar) boils <i>higher</i> than HCl (188 K, 18 e⁻, polar). Cl₂'s larger, more polarizable cloud gives LDF strong enough to outweigh HCl's dipole–dipole.</div>
+<div class="ex">CHBr₃ (bp 422 K) boils higher than CH₃OH (338 K) even though only methanol H-bonds. Bromoform's huge electron cloud gives very strong LDF.</div>
+<h3>When H-bonding wins</h3>
+<ul><li>HF (293 K) vs. F₂ (85 K): HF has H-bonding; F₂ has only weak LDF.</li>
+<li>NH₃ (−28 °C) vs. PH₃ (−126 °C): NH₃ H-bonds; PH₃ only has dipole–dipole + LDF.</li>
+<li>1-butanol (117 °C) vs. diethyl ether (35 °C): same formula C₄H₁₀O and electrons, but only butanol has an O–H to H-bond.</li>
+<li>H₂S vs. H₂O: H₂S has <i>stronger</i> LDF (more electrons), but H₂O has stronger dipole–dipole (O is more electronegative) <i>and</i> H-bonding, so water boils far higher.</li></ul>
+<div class="jt">Name the IMFs in <i>both</i> substances → state which is stronger and the structural reason (electrons/polarizability, polarity, H on F/O/N) → connect to energy: “more energy is required to overcome the stronger attractions, so ___ has the higher boiling point / lower vapor pressure.”</div>
+<div class="tip">Never say “bonds break” when a molecular substance boils. Say the <b>intermolecular forces</b> between molecules are overcome.</div>
+<div class="cxs">${cx("3.6 · Strong IMFs → non-ideal gases","n36")}</div>`},
+
+{id:"n31d",code:"3.1 · ION–DIPOLE & SOLUBILITY",t:"Ion–Dipole Forces & “Like Dissolves Like”",h:`
+<h3>Ion–dipole</h3>
+<ul><li>An ion attracts the oppositely charged end of polar molecules (usually water).</li>
+<li><b>Cations</b> (Na⁺, Mg²⁺) attract water's δ⁻ <b>oxygen</b>. <b>Anions</b> (F⁻, Cl⁻) attract water's δ⁺ <b>hydrogens</b>.</li>
+<li>Attraction <b>increases</b> as ion charge increases and as ion <b>size decreases</b> (Coulomb's law). Among Na⁺, K⁺, Mg²⁺, Ca²⁺, <b>Mg²⁺</b> attracts water most strongly.</li></ul>
+<div class="tip">On particle diagrams, look at which atom of each water points at the ion. O pointing in → the ion is a cation. H pointing in → the ion is an anion.</div>
+<h3>Solubility: like dissolves like</h3>
+<div class="tw"><table class="tb"><tr><th>Solute</th><th>Water (polar)</th><th>CCl₄ (nonpolar)</th><th>Ethanol (both)</th></tr>
+<tr><td>NaCl, KNO₃ (ionic)</td><td>✔ soluble</td><td>✘</td><td>✘ (alcohols don't dissolve ionic solids well)</td></tr>
+<tr><td>I₂, Br₂, C₆H₆ (nonpolar)</td><td>✘</td><td>✔</td><td>✔</td></tr></table></div>
+<div class="ex">Pyridine (C₅H₅N) dissolves in water but benzene (C₆H₆) doesn't. Pyridine's N makes it polar and gives a lone pair that accepts H-bonds from water. Benzene is nonpolar with only LDF, which can't compete with water's H-bonds.</div>
+<div class="ex">Glucose (C₆H₁₂O₆) has five O–H groups, so it H-bonds with water and dissolves. Cyclohexane (C₆H₁₂) has only LDF, so it doesn't.</div>
+<div class="cxs">${cx("Preview · 3.7–3.10 solutions","n37")}</div>`},
+
+{id:"n32",code:"3.2 · PROPERTIES OF SOLIDS",t:"Four Types of Solids",h:`
+<div class="tw"><table class="tb"><tr><th>Solid</th><th>Particles</th><th>Held by</th><th>Melting point</th><th>Conducts?</th><th>Mechanical</th><th>Water solubility</th><th>Examples</th></tr>
+<tr><td>Ionic</td><td>Cations + anions</td><td>Ionic bonds</td><td>High</td><td>Only molten or dissolved</td><td>Hard, brittle</td><td>Often soluble</td><td>NaCl, MgO, Na₂SO₄, NaOH</td></tr>
+<tr><td>Metallic</td><td>Cations in e⁻ sea</td><td>Metallic bonds</td><td>Wide range (Hg liquid, W very high)</td><td>Yes, as solid</td><td>Malleable, ductile, lustrous</td><td>Insoluble</td><td>Cu, Al, Rh, brass</td></tr>
+<tr><td>Covalent network</td><td>Nonmetal atoms</td><td>Covalent bonds in a continuous network</td><td>Very high</td><td>No (graphite is the exception)</td><td>Very hard, brittle</td><td>Insoluble</td><td>Diamond, SiO₂, SiC, BN</td></tr>
+<tr><td>Molecular</td><td>Discrete molecules</td><td>IMFs</td><td>Low</td><td>No</td><td>Soft</td><td>Polar: often yes. Nonpolar: no</td><td>Ice, I₂, CO₂(s), C₆H₄Cl₂, glucose</td></tr></table></div>
+<h3>Ionic solids</h3>
+<ul><li>Strong Coulombic attractions → low vapor pressure, high MP and BP.</li>
+<li><b>Brittle</b>: shifting a layer lines up like charges, which repel, and the crystal cleaves.</li>
+<li>Conduct only when ions are <b>mobile</b> (melted or dissolved). Electrons don't move in ionic solids.</li>
+<li>Larger charges and smaller ions → stronger attraction → higher MP. <b>MgO</b> (2+/2−, ≈2852 °C) ≫ <b>NaCl</b> (1+/1−, 801 °C). <b>LiF</b> (870 °C) &gt; <b>CsI</b> (621 °C) because Li⁺ and F⁻ are smaller.</li></ul>
+<h3>Covalent network solids</h3>
+<ul><li>Only nonmetals: elemental (diamond, graphite, Si) or binary nonmetal compounds (SiO₂, SiC, BN).</li>
+<li>No discrete molecules. “SiO₂” is a ratio, not a molecule.</li>
+<li><b>Diamond</b>: rigid 3-D network with fixed bond angles → extremely hard. <b>Graphite</b>: 2-D layers that slide → soft; delocalized electrons → conducts.</li>
+<li>Melting means breaking covalent bonds, so MPs are very high.</li></ul>
+<h3>Molecular solids</h3>
+<ul><li>Covalent bonds <i>inside</i> molecules, weak IMFs <i>between</i> them → low MP; some sublime (dry ice, I₂).</li>
+<li>Don't conduct: valence electrons are <b>localized</b> in bonds and lone pairs.</li>
+<li>Can be very large molecules or polymers (plastics, wax).</li></ul>
+<h3>Metallic solids &amp; alloys</h3>
+<ul><li>Delocalized valence electrons → conduct heat and electricity; cations shift without breaking the electron sea → malleable and ductile.</li>
+<li><b>Substitutional alloy</b> (brass: Zn replaces Cu, similar size). <b>Interstitial alloy</b> (steel: small C fills gaps in Fe) → more rigid, less malleable and ductile. Both still conduct.</li></ul>
+<div class="tip">To prove a solid is ionic, test the <b>aqueous solution</b> (or melt) for conductivity. A solid ionic crystal and a molecular crystal both fail to conduct.</div>
+<div class="ex">Overall MP order (from the POGIL data): molecular &lt; metallic (typically) &lt; ionic &lt; network. There's overlap, e.g., platinum (metallic) melts higher than some network solids.</div>
+<div class="cxs">${cx("3.3 · Crystalline vs. amorphous","n33")}</div>`},
+
+{id:"n33",code:"3.3 · SOLIDS, LIQUIDS, GASES",t:"States of Matter at the Particle Level",h:`
+<div class="tw"><table class="tb"><tr><th>State</th><th>Spacing</th><th>Motion</th><th>Shape / volume</th></tr>
+<tr><td>Solid</td><td>Close contact, fixed positions</td><td>Vibrate in place, no translation</td><td>Definite shape and volume</td></tr>
+<tr><td>Liquid</td><td>Close contact</td><td>Move past and collide continually</td><td>Definite volume, takes container's shape</td></tr>
+<tr><td>Gas</td><td>Far apart, mostly empty space</td><td>Fast, random, straight lines</td><td>Fills container: no definite shape or volume</td></tr></table></div>
+<ul><li><b>Crystalline</b> solids have a regular 3-D pattern (sharp MP). <b>Amorphous</b> solids (glass, plastic) have no long-range order.</li>
+<li>Solid and liquid have <b>similar molar volumes</b> because particles touch in both. A gas's molar volume is about 1000× larger.</li>
+<li>Liquid behavior depends on IMF strength (polarity, H-bonding) and temperature.</li></ul>
+<h3>Drawing particle diagrams</h3>
+<ul><li><b>Solid</b>: tightly packed, ordered rows, tiny vibration marks.</li>
+<li><b>Liquid</b>: still touching but disordered, with gaps, moderate “whooshes.”</li>
+<li><b>Gas</b>: few particles spread far apart, long motion lines (most KE).</li>
+<li>Keep the <b>same number of particles</b> when showing a phase change, and never break molecules apart for a physical change.</li></ul>
+<div class="ex">Xe(s), Xe(l), Xe(g): Xe has only LDF. Its neighbor I₂ is a solid at room temperature because I₂ has more electrons (106 vs. 54), so it is more polarizable with stronger LDF.</div>`},
+
+{id:"n34",code:"3.4 · IDEAL GAS LAW",t:"Gas Variables & Gas Laws",h:`
+<h3>Variables and units</h3>
+<div class="tw"><table class="tb"><tr><th>Variable</th><th>Symbol</th><th>Units</th><th>Conversions (reference sheet)</th></tr>
+<tr><td>Pressure</td><td>P</td><td>atm, mmHg, torr, kPa</td><td>1 atm = 760 mmHg = 760 torr = 101.3 kPa</td></tr>
+<tr><td>Volume</td><td>V</td><td>L (for PV = nRT)</td><td>1 L = 1000 mL; 1 mL = 1 cm³</td></tr>
+<tr><td>Temperature</td><td>T</td><td><b>K only</b></td><td>K = °C + 273.15</td></tr>
+<tr><td>Amount</td><td>n</td><td>mol</td><td>n = m / M</td></tr></table></div>
+<p><b>STP</b> = 273.15 K and 1.0 atm. At STP, one mole of <i>any</i> ideal gas occupies <b>22.4 L</b>. “Rigid container” means V is constant.</p>
+<h3>Ideal gas law: one set of conditions</h3>
+<div class="eqb">PV = nRT &nbsp;&nbsp; R = 0.08206 L·atm/(mol·K) &nbsp;|&nbsp; 8.314 L·kPa/(mol·K)</div>
+<ul><li>Use when conditions <b>aren't changing</b> (no “initial” and “final”).</li>
+<li>Match R to your pressure unit, and convert mL → L and °C → K first.</li>
+<li>Derived forms (not on the reference sheet): <span class="eq">PV = (m/M)RT</span> and <span class="eq">M = DRT/P</span>.</li></ul>
+<h3>Combined gas law: conditions change</h3>
+<div class="eqb">P₁V₁ / (n₁T₁) = P₂V₂ / (n₂T₂)</div>
+<p>Cross out whatever stays constant to get the individual laws:</p>
+<div class="tw"><table class="tb"><tr><th>Law</th><th>Changing</th><th>Constant</th><th>Relationship</th><th>Formula</th><th>Lab demo</th></tr>
+<tr><td>Boyle's</td><td>P, V</td><td>n, T</td><td>Inverse</td><td>P₁V₁ = P₂V₂</td><td>Marshmallow in syringe</td></tr>
+<tr><td>Charles's</td><td>V, T</td><td>n, P</td><td>Direct</td><td>V₁/T₁ = V₂/T₂</td><td>Balloon on heated flask</td></tr>
+<tr><td>Gay-Lussac's</td><td>P, T</td><td>n, V</td><td>Direct</td><td>P₁/T₁ = P₂/T₂</td><td>Can crush in ice bath</td></tr>
+<tr><td>Avogadro's</td><td>V, n</td><td>P, T</td><td>Direct</td><td>V₁/n₁ = V₂/n₂</td><td>Birthday candles</td></tr></table></div>
+<h3>Graphs</h3>
+<ul><li>V vs. T(K), P vs. T(K), V vs. n: straight lines through the origin (direct).</li>
+<li>P vs. V: a curve that falls (inverse). P vs. 1/V is a straight line.</li></ul>
+<div class="ex">Balloon: 1.05 atm, 5.0 L, 20 °C → 0.65 atm, −15 °C. V₂ = (5.0)(1.05/0.65)(258.15/293.15) = <b>7.1 L</b>.</div>
+<div class="tip">Doubling °C does <i>not</i> double the volume. Going from 100 °C to 200 °C is 373 K → 473 K, only ×1.27.</div>
+<div class="cxs">${cx("3.5 · KMT explains these laws","n35")}${cx("Labs","nlab")}</div>`},
+
+{id:"n34b",code:"3.4 · DALTON'S LAW",t:"Mixtures of Gases",h:`
+<p>Non-reacting gases in a mixture each behave as if alone. Each exerts its own <b>partial pressure</b>, and the total depends only on the <b>total number of moles</b> hitting the walls, not their identities.</p>
+<div class="eqb">P_total = P_A + P_B + P_C + …</div>
+<div class="eqb">P_A = X_A · P_total &nbsp;&nbsp; X_A = n_A / n_total</div>
+<div class="ex">Air at 1 atm: 78% N₂, 21% O₂, 0.9% Ar → P(N₂) = 0.78 atm, P(O₂) = 0.21 atm, P(Ar) = 0.009 atm.</div>
+<div class="ex">N₂/O₂/Ne mixture at 839 torr with X = 0.41, 0.35, 0.24 → 344 torr, 294 torr, 201 torr.</div>
+<div class="ex">Two flasks: 4.0 L Ne at 3.6 atm and 8.0 L Ar at 2.4 atm mixed into 12.0 L (same T). P(Ne) = 3.6·4.0/12.0 = 1.2 atm; P(Ar) = 2.4·8.0/12.0 = 1.6 atm; total = <b>2.8 atm</b>.</div>
+<div class="tip">Equal <i>masses</i> ≠ equal moles. In an equal-mass mixture, the lightest gas has the highest partial pressure.</div>
+<div class="tip">Adding more Ar to a rigid container raises P(Ar) and P_total, but P(N₂) doesn't change (its moles, V, and T didn't change).</div>
+<h3>Collecting gas over water</h3>
+<div class="eqb">P_gas = P_barometric − P_H₂O(T)</div>
+<p>The vapor pressure of water depends only on temperature (≈19.8 mmHg at 22 °C).</p>
+<div class="cxs">${cx("Cage of Death lab","nlab")}</div>`},
+
+{id:"n35",code:"3.5 · KINETIC MOLECULAR THEORY",t:"KMT & Maxwell–Boltzmann",h:`
+<h3>The five postulates</h3>
+<ol><li>Gas particles are in <b>constant, random motion</b> and collide with each other and the container.</li>
+<li>A gas is <b>mostly empty space</b>: particles are tiny and far apart (volume negligible). This is why gases compress easily.</li>
+<li><b>Pressure</b> comes from particles hitting the container walls. Collisions transfer momentum; particles are tiny but numerous.</li>
+<li>Particles have <b>no attractions</b> (no IMFs) and collisions are <b>elastic</b>.</li>
+<li>Average <b>kinetic energy ∝ Kelvin temperature</b>.</li></ol>
+<div class="eqb">KE = ½mv² &nbsp;&nbsp; T ∝ KE_avg</div>
+<ul><li>Same T → same average KE for every gas. Since KE = ½mv², the <b>lighter gas moves faster</b>. H₂ is fastest; C₈H₁₈ is slowest.</li>
+<li>Heating a gas → faster particles → <b>more frequent and more forceful</b> wall collisions → higher pressure (rigid container) or larger volume (flexible).</li>
+<li>Compressing at constant T → <b>same speed</b>, but particles hit walls more often in the smaller space → higher pressure.</li></ul>
+<h3>Maxwell–Boltzmann distributions</h3>
+<ul><li>Not every particle has the same speed; the curve shows the spread.</li>
+<li><b>Higher T</b>: peak shifts right and gets lower and wider. Area under the curve is the same (same number of particles).</li>
+<li><b>Heavier gas (same T)</b>: taller, narrower peak at lower speed. <b>Lighter gas</b>: flatter, spread to higher speeds.</li></ul>
+<div class="ex">He vs. O₂ at 300 K: O₂ is the tall, narrow curve at low speed; He is the flat, wide curve. Their average KEs are <b>equal</b> because T is equal.</div>
+<div class="tip">If a question asks about kinetic <i>energy</i>, the answer depends only on T. If it asks about <i>speed</i>, mass matters too.</div>
+<div class="cxs"><a class="cx" onclick="setMode('gas')"><i class="fa-solid fa-wind"></i>Try the Gas Lab simulator</a>${cx("3.6 · When KMT fails","n36")}</div>`},
+
+{id:"n36",code:"3.6 · DEVIATION FROM IDEAL",t:"Real Gases",h:`
+<div class="tw"><table class="tb"><tr><th></th><th>Ideal gas</th><th>Real (non-ideal) gas</th></tr>
+<tr><td>Assumes</td><td>Fast particles, far apart, no IMFs, elastic collisions</td><td>Particles have volume and attract each other</td></tr>
+<tr><td>Conditions</td><td><b>High T, low P</b></td><td><b>Low T, high P</b> (close to condensing)</td></tr></table></div>
+<h3>Two causes of deviation</h3>
+<div class="tw"><table class="tb"><tr><th>Cause</th><th>When it dominates</th><th>Effect vs. PV = nRT</th></tr>
+<tr><td>Attractions (IMFs)</td><td>Low T, moderate–high P, polar or large molecules</td><td>Particles pull on each other and hit walls less often and less hard → <b>P (or V) lower</b> than predicted</td></tr>
+<tr><td>Particle volume</td><td>Extremely high P</td><td>Less empty space to move in → <b>V (or P) higher</b> than predicted</td></tr></table></div>
+<div class="ex">Rn at 10 atm and 100 K: a smaller volume than predicted means IMFs pulled particles together. A larger volume than predicted means the Rn atoms' own volume isn't negligible.</div>
+<div class="ex">H₂ in 5.0 L with 12.0 mol at 300 K: PV = nRT predicts 59 atm, but 62 atm is observed. The observed P is higher because the particles' combined volume is too large to ignore (less free space). The 3.0 mol / 15.0 L sample (predicted 4.9 atm, observed 4.9 atm) behaves ideally.</div>
+<div class="ex">NO₂ vs. CO₂ (similar mass): NO₂ is polar (bent, odd electron) and has dipole–dipole forces, so it deviates more.</div>
+<div class="tip">“Real gas pressure is lower” → explain with attractions. “Real gas pressure/volume is higher” → explain with particle volume. Match the explanation to the direction.</div>`},
+
+{id:"nlab",code:"LABS · YOUR CLASS EXPERIMENTS",t:"Gas Labs & Lab Math",h:`
+<h3>Gizmo: Gas Variables &amp; Ideal Gas Law</h3>
+<ul><li>Double T → V doubles (P, n constant). Double P → V halves. Double n → V doubles. Double T → P doubles (V constant). Double V → P halves.</li>
+<li>Combine V ∝ n, V ∝ T, V ∝ 1/P → V ∝ nT/P → V = nRT/P → <b>PV = nRT</b>.</li>
+<li>At STP, any gas gives 22.4 L/mol. Changing the gas identity changes the speed, not the volume.</li></ul>
+<h3>Gas Behavior stations</h3>
+<ul><li><b>Marshmallow (Boyle)</b>: pull plunger → V ↑, P ↓ → marshmallow puffs up.</li>
+<li><b>Birthday candles (Avogadro)</b>: candles use up O₂, fewer gas moles → smaller gas volume → water rises into the jar.</li>
+<li><b>Can crush (Gay-Lussac)</b>: hot vapor cooled in ice → P inside drops below atmospheric P → can crushes.</li>
+<li><b>Balloon on flask (Charles)</b>: heat → V ↑; ice bath → V ↓.</li></ul>
+<h3>Summative: Cage of Death (molar volume of H₂)</h3>
+<div class="eqb">Mg(s) + 2HCl(aq) → MgCl₂(aq) + H₂(g)</div>
+<ol><li>Convert T to K (water temp = gas temp at thermal equilibrium).</li>
+<li>Dalton: P(H₂) = P_barometric − P(H₂O). Convert to atm (if given inHg: 1 in = 2.54 cm = 25.4 mm).</li>
+<li>Ideal gas law → moles of H₂ (V in L).</li>
+<li>Combined gas law → volume at STP (n constant).</li>
+<li>Molar volume = V_STP ÷ n. Compare with 22.4 L/mol for % error.</li>
+<li>Theoretical n(H₂) = n(Mg), with mass from ribbon length (1 m Mg = 0.921 g).</li></ol>
+<div class="ex">Pre-lab: 31.0 mL H₂ at 22 °C, 746 mmHg, P(H₂O) = 19.8 mmHg. P(H₂) = 726.2 mmHg = 0.9555 atm. n = (0.9555)(0.0310)/[(0.08206)(295.15)] = 1.22 × 10⁻³ mol. V_STP = 31.0 mL × (0.9555/1)(273.15/295.15) = 27.4 mL.</div>
+<div class="tip">Common error explanations: unreacted Mg or H₂ bubbles stuck to the tube (less gas → smaller measured V); forgetting to subtract water vapor (P too high → n too high); water levels not equalized (gas P ≠ barometric P).</div>
+<h3>Molar mass of an unknown gas (practice set #31)</h3>
+<div class="ex">0.843 L flask at 23.0 °C, 750. torr. Air mass = 1.18 g/L × 0.843 L = 0.99 g. Empty flask = 157.70 − 0.99 = 156.71 g. Gas = 158.08 − 156.71 = 1.37 g. n = (0.987 atm)(0.843 L)/[(0.08206)(296.15 K)] = <b>0.0342 mol</b>. M = 1.37 / 0.0342 = <b>40.0 g/mol</b>; % error vs. CO₂ = 8.9%.</div>
+<div class="tip">The answer key writes n = 0.342 mol. That's a typo: it's 0.0342 mol. The final molar mass (40.0 g/mol) is correct.</div>
+<p>Error analysis: leftover air (lighter than CO₂) → lower mass of gas → <b>low</b> molar mass. CO₂ colder than reported → denser gas, more mass in the flask → <b>high</b> molar mass.</p>`},
+
+{id:"n37",code:"3.7–3.13 · PREVIEW",t:"Coming Up: Solutions & Spectroscopy",h:`
+<p class="mu">These objectives are on your unit list but not in this packet of handouts. Here's the core so the terms aren't new when you get there.</p>
+<ul><li><b>3.7 Solutions</b>: homogeneous mixtures (solid, liquid, or gas). <span class="eq">M = mol solute / L solution</span></li>
+<li><b>3.8 Particle models</b>: show relative amounts of solute and solvent and the IMFs between them (e.g., water's O facing Na⁺).</li>
+<li><b>3.9 Separation</b>: filtration can't separate a solution. <b>Chromatography</b> separates by different attractions to the mobile vs. stationary phase. <b>Distillation</b> separates by different vapor pressures (IMFs).</li>
+<li><b>3.10 Solubility</b>: similar IMFs → soluble or miscible.</li>
+<li><b>3.11 Spectroscopy</b>: microwave → rotation; infrared → vibration; UV/visible → electronic transitions.</li>
+<li><b>3.12 Photons</b>: <span class="eq">c = λν</span>, <span class="eq">E = hν</span>. An absorbed photon raises the energy by exactly E.</li>
+<li><b>3.13 Beer–Lambert</b>: <span class="eq">A = εbc</span>. With b and λ fixed, absorbance ∝ concentration.</li></ul>`}
+];
+function notes(){
+  $("main").innerHTML=`<div class="card"><div class="mu" style="margin-bottom:8px">Jump to a section. Terms marked <span class="xtra">★ beyond handouts</span> aren't on your class sheets but show up on AP questions. Dashed chips jump between sections.</div><div class="chips row">${NOTES.map(n=>`<button onclick="document.getElementById('${n.id}').scrollIntoView({behavior:'smooth'})">${n.code.split(" ")[0]} ${n.t.split(":")[0]}</button>`).join("")}</div></div>`+
+  NOTES.map(n=>`<section class="card sec" id="${n.id}"><div class="code">${n.code}</div><h2>${n.t}</h2>${n.h}</section>`).join("");
+}
+
+/* ---------- GLOSSARY ---------- */
+function gloss(){
+  $("main").innerHTML='<input type="text" id="q" placeholder="Search Unit 3 terms or definitions..." oninput="gl()" aria-label="Search terms"><div id="gl"></div>';gl();
+}
+function gl(){
+  const s=($("q").value||"").toLowerCase();
+  $("gl").innerHTML=Object.keys(C).filter(c=>cats.has(c)).map(c=>{
+    const ts=D.filter(d=>d[1]==c&&(d[0]+" "+d[2]).toLowerCase().includes(s));
+    return ts.length?`<div class="gh">${C[c]}</div><div class="gg">${ts.map(d=>`<div class="gt"><b>${d[0]}${X(d)}</b><span>${d[2]}</span></div>`).join("")}</div>`:"";
+  }).join("")||'<div class="card">No matches.</div>';
+}
+
+/* ---------- COMPARE ---------- */
+const CMP=[
+["Intramolecular vs. intermolecular",[["Intramolecular (bonds)","Inside a compound: covalent, ionic, metallic. Breaking = chemical change. ~938 kJ/mol for water's O–H bonds."],["Intermolecular (IMFs)","Between molecules: LDF, dipole–dipole, H-bond, ion–dipole. Overcoming = phase change. ~41 kJ/mol to boil water."]],"Did the formula change? Bonds broke. Same formula, new phase? IMFs were overcome."],
+["LDF vs. dipole–dipole",[["London dispersion","Temporary dipoles. Every molecule has them. Grows with electrons and contact area."],["Dipole–dipole","Permanent dipoles. Only in polar molecules, on top of LDF."]],"Check the shape: if dipoles cancel (CO₂, BF₃, CCl₄), it's LDF only."],
+["Dipole–dipole vs. hydrogen bonding",[["Dipole–dipole","Any polar molecule (HCl, CH₃Cl, SF₄)."],["Hydrogen bond","Special case: H directly on F, O, or N, attracted to F/O/N lone pair. Much stronger."]],"Find an H–F, H–O, or H–N bond. H on carbon doesn't count."],
+["Hydrogen bond vs. covalent bond",[["Hydrogen bond","IMF between molecules. Electrostatic attraction. Dashed line."],["Covalent bond","Shared electron pair inside a molecule. Much stronger. Solid line."]],"The O–H in water is covalent; the O···H between two waters is a hydrogen bond."],
+["Ion–dipole vs. dipole–dipole",[["Ion–dipole","Full ionic charge attracts a partial charge. Stronger. Salt dissolving in water."],["Dipole–dipole","Partial charge attracts partial charge."]],"Is a dissolved ion involved? Then it's ion–dipole."],
+["Boiling point vs. vapor pressure",[["Boiling point","Goes UP with stronger IMFs."],["Vapor pressure","Goes DOWN with stronger IMFs."]],"They move in opposite directions. High BP ↔ low VP."],
+["Ionic vs. metallic solids",[["Ionic","Brittle; conducts only when molten or dissolved (mobile ions). Metal + nonmetal."],["Metallic","Malleable and ductile; conducts as a solid (mobile electrons). Metals only."]],"Conducts as a solid → metallic. Conducts only in water/melted → ionic."],
+["Covalent network vs. molecular solids",[["Network","Covalent bonds throughout, no molecules. Very high MP, very hard (SiO₂, diamond, SiC)."],["Molecular","Discrete molecules held by IMFs. Low MP, soft (I₂, ice, CO₂)."]],"Both are nonmetals and nonconducting. Melting point gives it away: hundreds or thousands of °C → network."],
+["Diamond vs. graphite",[["Diamond","3-D network, every C bonded to 4 others. Hardest; doesn't conduct."],["Graphite","2-D layers that slide. Soft, slippery; conducts (delocalized electrons)."]],"Same element, different network: 3-D = hard, layers = soft."],
+["Substitutional vs. interstitial alloy",[["Substitutional","Similar-size atoms swap in (brass: Zn for Cu)."],["Interstitial","Small atoms fill gaps (steel: C in Fe). More rigid, less malleable."]],"Small atom in the gaps → interstitial."],
+["Crystalline vs. amorphous",[["Crystalline","Regular repeating 3-D pattern. Sharp MP (salt, quartz)."],["Amorphous","No long-range order. Softens over a range (glass, plastic)."]],"Ordered lattice → crystalline."],
+["Average kinetic energy vs. average speed",[["Kinetic energy","Depends ONLY on T. Same T → same KE for any gas."],["Speed","Depends on T and mass. Lighter gas → faster at the same T."]],"Read the question for “energy” vs. “speed.”"],
+["Ideal vs. real gas",[["Ideal","High T, low P. Negligible volume, no IMFs."],["Real","Low T, high P. Volume and IMFs matter."]],"Near condensation (cold, squeezed) → real behavior."],
+["Two causes of non-ideal behavior",[["Attractions","Real P or V LOWER than ideal. Dominant at low T, polar or big molecules."],["Particle volume","Real P or V HIGHER than ideal. Dominant at extremely high P."]],"Lower than predicted → attractions. Higher → particle volume."],
+["Boyle vs. Charles vs. Gay-Lussac",[["Boyle's","P and V, inverse (n, T constant)."],["Charles's","V and T, direct (n, P constant)."],["Gay-Lussac's","P and T, direct (n, V constant)."]],"Whatever variable is NOT mentioned is constant. Inverse only for P–V."],
+["Ideal gas law vs. combined gas law",[["PV = nRT","One set of conditions. Need R."],["P₁V₁/n₁T₁ = P₂V₂/n₂T₂","Initial and final conditions. R cancels."]],"See a “1” and a “2” (before/after)? Combined gas law."],
+["Partial vs. total pressure",[["Partial pressure","One gas's share: P_A = X_A · P_total."],["Total pressure","Sum of all partial pressures; depends on total moles."]],"Mole fraction converts total → partial."]
+];
+function cmp(){
+  $("main").innerHTML=`<div class="card"><div class="mu">The pairs that most often get swapped on multiple-choice questions. Read the quick tell, then test yourself in Practice MCQ.</div></div>`+CMP.map(([t,items,tell])=>`<div class="card"><h3 style="margin:0 0 10px">${t}</h3><div class="cmp">${items.map((x,k)=>`<div class="cb" style="--c:${["#b98cff","#ffd27a","#7cffd8"][k]}"><b>${x[0]}</b>${x[1]}</div>`).join("")}</div><div class="tell">${tell}</div></div>`).join("");
+}
+
+/* ---------- CONNECTIONS ---------- */
+const CON=[
+["Back to Units 1–2: Atoms & Bonding",[
+["Coulomb's law","Unit 1 · Atomic structure",null,"The same F ∝ q₁q₂/r² that explained ionization energy explains why bonds beat IMFs and why MgO melts higher than NaCl."],
+["Polarizability","Unit 1 · Atomic radius & electrons",null,"More electrons and larger radius → electron cloud is easier to distort → stronger LDF (He < Ne < Ar < Xe)."],
+["Dipole–dipole strength","Unit 2 · Electronegativity",null,"Bigger ΔEN → bigger dipole moment → stronger dipole–dipole (HCl > HBr)."],
+["Polar vs. nonpolar","Unit 2 · Lewis structures & VSEPR",null,"You must draw the Lewis structure and predict the shape before you can name IMFs. Symmetric shapes (CO₂, BF₃) cancel dipoles."],
+["Ionic solid MP","Unit 2 · Lattice energy",null,"Higher charges and smaller ions → larger lattice energy → higher melting point (LiF > CsI)."],
+["Metallic solids & alloys","Unit 2 · Metallic bonding",null,"Electron sea model from Unit 2 explains conductivity, malleability, and interstitial vs. substitutional alloys."]]],
+["Inside Unit 3",[
+["Intra vs. inter","3.2 Types of solids","n32","Whether a solid is held by bonds or IMFs decides its type and properties."],
+["IMF strength","3.6 Real gases","n36","Stronger IMFs make gases deviate more from ideal (NO₂ vs. CO₂)."],
+["KMT postulate 5","3.4 Gas laws","n34","KE ∝ T explains why P ∝ T (Gay-Lussac) and V ∝ T (Charles)."],
+["Dalton's law","Cage of Death lab","nlab","Subtract the vapor pressure of water before using PV = nRT."],
+["Like dissolves like","3.7–3.10 Solutions","n37","Solubility, chromatography, and distillation are all IMF stories."]]],
+["Forward to Units 4–9",[
+["Gas stoichiometry","Unit 4 · Stoichiometry",null,"PV = nRT turns gas volumes into moles for mole-ratio problems, exactly what the Cage of Death lab does."],
+["Maxwell–Boltzmann curve","Unit 5 · Kinetics",null,"Raising T shifts more particles past the activation energy, so reactions speed up."],
+["Enthalpy of vaporization","Unit 6 · Thermochemistry",null,"Phase-change enthalpies measure IMF strength; heating curves come back in Unit 6."],
+["Partial pressures","Unit 7 · Equilibrium (Kp)",null,"Kp is written with partial pressures from Dalton's law."],
+["Hydrogen bonding","Unit 8 · Acids & bases",null,"Water's H-bonding and polarity drive hydration of ions and acid strength trends."],
+["Gas particles & disorder","Unit 9 · Entropy",null,"Gases have the most positional freedom, so reactions that make more gas moles increase entropy."]]]
+];
+function conn(){
+  $("main").innerHTML=`<div class="card"><div class="mu">How this unit ties into the rest of AP Chem. Pink chips inside Unit 3 jump to that section of the notes. FRQs reward these links: the explanation for almost every Unit 3 answer is Coulomb's law.</div></div>`+CON.map(([g,list])=>`<div class="card"><h3 style="margin:0 0 10px">${g}</h3><div class="cn">${list.map(([a,b,id,t])=>`<div class="cc"><div class="pair">${a} <i class="fa-solid fa-arrow-right-arrow-left"></i> ${id?`<a class="to" href="#" onclick="goNote('${id}');return false">${b}</a>`:`<span class="to">${b}</span>`}</div>${t}</div>`).join("")}</div></div>`).join("");
+}
+
+/* ---------- IMF FINDER ---------- */
+/* [formula, name, kind: m=molecular i=ionic t=metallic n=network, polar, hbond, strongest/notes, state] */
+const MOLS=[
+["H₂O","water","m",1,1,"Bent shape with two lone pairs → polar. H bonded to O → hydrogen bonding is the strongest IMF.","liquid"],
+["NH₃","ammonia","m",1,1,"Trigonal pyramidal with a lone pair → polar. H on N → hydrogen bonding.","gas (bp −33 °C)"],
+["HF","hydrogen fluoride","m",1,1,"H on F → hydrogen bonding. That's why HF boils at 293 K while F₂ boils at 85 K.","gas/liquid near room T"],
+["CH₃OH","methanol","m",1,1,"O–H group → hydrogen bonding; the C–O and O–H bonds make it polar.","liquid"],
+["CH₃COOH","acetic acid","m",1,1,"O–H group → hydrogen bonding (H on O bonds to the C=O oxygen of a neighbor).","liquid"],
+["C₆H₁₂O₆","glucose","m",1,1,"Five O–H groups → extensive hydrogen bonding; that's why it dissolves in water.","solid (molecular)"],
+["HClO","hypochlorous acid","m",1,1,"Structure is H–O–Cl, so the H is on O → hydrogen bonding.","aqueous in practice"],
+["CH₄","methane","m",0,0,"Tetrahedral, symmetric → nonpolar. LDF only, with few electrons → gas.","gas"],
+["CO₂","carbon dioxide","m",0,0,"Linear, the two C=O dipoles cancel → nonpolar. LDF only.","gas"],
+["I₂","iodine","m",0,0,"Nonpolar diatomic, but 106 electrons → very polarizable → strong LDF → solid.","solid"],
+["BF₃","boron trifluoride","m",0,0,"Trigonal planar, no lone pairs on B → dipoles cancel → nonpolar. LDF only.","gas"],
+["CCl₄","carbon tetrachloride","m",0,0,"Tetrahedral, symmetric → nonpolar. LDF only (but many electrons → liquid).","liquid"],
+["C₆H₆","benzene","m",0,0,"Flat, symmetric ring → nonpolar. LDF only.","liquid"],
+["Ne","neon","m",0,0,"Single atom, no dipole → LDF only.","gas"],
+["HCl","hydrogen chloride","m",1,0,"Polar (ΔEN 0.9), but H is on Cl, not F/O/N → dipole–dipole is the strongest.","gas"],
+["HI","hydrogen iodide","m",1,0,"Slightly polar → dipole–dipole, but with 54 electrons, LDF is actually the larger contribution.","gas"],
+["CH₃Cl","chloromethane","m",1,0,"Tetrahedral but asymmetric (one Cl) → polar → dipole–dipole. H is on C, so no H-bonds.","gas"],
+["CHCl₃","chloroform","m",1,0,"Asymmetric tetrahedral → polar → dipole–dipole + LDF.","liquid"],
+["CH₂F₂","difluoromethane","m",1,0,"Has F, but its H atoms are on C → NO hydrogen bonding. Polar → dipole–dipole.","gas"],
+["SF₄","sulfur tetrafluoride","m",1,0,"Seesaw shape (lone pair on S) → polar → dipole–dipole.","gas"],
+["H₂S","hydrogen sulfide","m",1,0,"Bent → polar, but S isn't F/O/N → dipole–dipole + LDF only.","gas"],
+["O₃","ozone","m",1,0,"Bent with a lone pair and resonance → slightly polar → dipole–dipole.","gas"],
+["(C₂H₅)₂O","diethyl ether","m",1,0,"Bent C–O–C → polar, but no H on O → can't H-bond with itself. Dipole–dipole.","liquid (bp 35 °C)"],
+["C₅H₅N","pyridine","m",1,0,"Polar (N in ring). N's lone pair can accept an H-bond from water, but pyridine has no H on N, so it can't H-bond with itself.","liquid"],
+["NaCl","sodium chloride","i",0,0,"Ionic: Na⁺ and Cl⁻ held by ionic bonds in a lattice, not IMFs.","solid"],
+["NaNO₃","sodium nitrate","i",0,0,"Ionic: Na⁺ and NO₃⁻ ions in a lattice. (Covalent bonds inside NO₃⁻, ionic bonds between ions.)","solid"],
+["SiO₂","quartz","n",0,0,"Covalent network: Si and O bonded in a continuous 3-D network. No discrete molecules.","solid"],
+["Cu₃Zn₂","brass","t",0,0,"Metallic (a substitutional alloy): cations in a sea of electrons.","solid"],
+["Hg","mercury","t",0,0,"Metallic bonding, the one metal that's a liquid at room temperature.","liquid"]
+];
+const IMFS=[["ldf","London dispersion"],["dd","Dipole–dipole"],["hb","Hydrogen bonding"],["bond","Held by bonds instead (ionic / metallic / network)"]];
+let mi=0,mOrder=[];
+function imf(){mOrder=sh(MOLS.map((_,k)=>k));mi=0;imfQ()}
+function imfQ(){
+  const m=MOLS[mOrder[mi%mOrder.length]];
+  $("main").innerHTML=`<div class="card"><div class="mu">Check <b>every</b> force present between particles in a pure sample, then check your answer. Work it like the AP: Lewis structure → shape → polar? → H on F/O/N?</div></div>
+  <div class="card" style="text-align:center"><div class="mol" style="font-size:34px">${m[0]}</div><div class="mu">${m[1]}</div></div>
+  <div class="card"><div class="row" id="cks">${IMFS.map(([k,v])=>`<label class="ck" id="l_${k}"><input type="checkbox" id="c_${k}" onchange="if(this.checked&&'${k}'=='bond'){['ldf','dd','hb'].forEach(x=>$('c_'+x).checked=false)}else if(this.checked){$('c_bond').checked=false}"> ${v}</label>`).join("")}</div>
+  <div class="row"><button class="on" id="ckb" onclick="imfCheck()">Check</button><button onclick="mi++;imfQ()">Skip</button><span class="mu">${mi+1} of ${mOrder.length}</span></div><div id="f"></div></div>`;
+}
+function imfCheck(){
+  const m=MOLS[mOrder[mi%mOrder.length]],mol=m[2]=="m";
+  const want={ldf:mol,dd:mol&&!!m[3],hb:mol&&!!m[4],bond:!mol};
+  let ok=true;
+  IMFS.forEach(([k])=>{const got=$("c_"+k).checked;$("c_"+k).disabled=true;if(got!=want[k])ok=false;if(want[k])$("l_"+k).classList.add("ok");else if(got)$("l_"+k).classList.add("bad")});
+  $("ckb").disabled=true;
+  const kind={m:"Molecular",i:"Ionic",t:"Metallic",n:"Covalent network"}[m[2]];
+  const strongest=!mol?"Bonds (not IMFs)":m[4]?"Hydrogen bonding":m[3]?"Dipole–dipole":"London dispersion";
+  $("f").innerHTML=`<div class="ans ${ok?"":"no"}"><b>${ok?"Correct!":"Not quite."}</b> ${kind} · strongest: <b>${strongest}</b> · room temperature: ${m[6]}<br>${m[5]}</div><div class="row"><button class="on" onclick="mi++;imfQ()">Next molecule</button></div>`;
+}
+
+/* ---------- BP DUEL ---------- */
+/* [A, B, property, winner index, why] */
+const DUEL=[
+["HF","F₂","higher boiling point",0,"HF has hydrogen bonding (H on F). F₂ has only weak LDF. (293 K vs. 85 K)"],
+["NH₃","PH₃","higher boiling point",0,"NH₃ hydrogen-bonds; PH₃ has only dipole–dipole and LDF. (−28 °C vs. −126 °C)"],
+["Cl₂","HCl","higher boiling point",0,"Trap! Cl₂ has 34 electrons vs. 18 for HCl. Its much more polarizable cloud gives LDF that outweighs HCl's dipole–dipole. (238 K vs. 188 K)"],
+["CHBr₃","CH₃OH","higher boiling point",0,"Trap! Bromoform's huge electron cloud gives LDF strong enough to beat methanol's H-bonding. (422 K vs. 338 K)"],
+["1-butanol","diethyl ether","higher boiling point",0,"Same formula (C₄H₁₀O) and electrons, but only butanol has O–H for hydrogen bonding. (117 °C vs. 35 °C)"],
+["n-pentane","neopentane","higher boiling point",0,"Same formula. The straight chain has more contact area → stronger LDF. Branched, compact neopentane boils lower. (309 K vs. 283 K)"],
+["H₂S","H₂O","higher boiling point",1,"H₂S has stronger LDF (more electrons), but water's H-bonding and larger dipole dominate. (−60 °C vs. 100 °C)"],
+["CH₄","C₂H₆","higher boiling point",1,"Both nonpolar, LDF only. Ethane has more electrons → more polarizable → stronger LDF."],
+["Paraffin wax (C₂₅H₅₂)","H₂O","higher melting point",0,"Wax has only LDF, but with ~200 electrons and long chains, its total LDF beats water's H-bonds, so it's a solid at room temperature."],
+["Ne","Ar","higher boiling point",1,"Ar has 18 electrons vs. 10 → more polarizable → stronger LDF."],
+["HCl","HBr","higher boiling point",1,"Trap! HCl is more polar, but HBr has many more electrons. LDF wins: HBr boils higher (206 K vs. 188 K)."],
+["HCl","HBr","stronger dipole–dipole forces",0,"Bigger electronegativity difference (0.9 vs. 0.7) → bigger dipole moment → stronger dipole–dipole."],
+["Br₂","I₂","higher melting point",1,"Both nonpolar diatomics; I₂ has more electrons → stronger LDF (I₂ is a solid, Br₂ a liquid)."],
+["CHCl₃","CHBr₃","higher vapor pressure",0,"Same shape and IMF types. CHCl₃ has fewer electrons → weaker LDF → more molecules escape → higher vapor pressure."],
+["C₆H₁₄","C₈H₁₇OH","higher vapor pressure (evaporates faster)",0,"Hexane: small, nonpolar, LDF only. Octanol: bigger and H-bonding. Weak IMFs → fast evaporation."],
+["NaCl","CCl₄","higher melting point",0,"NaCl is held by ionic bonds; CCl₄ only by LDF between molecules."],
+["MgO","NaCl","higher melting point",0,"Both ionic, but Mg²⁺/O²⁻ have double the charges and smaller radii → much stronger Coulombic attraction. (2852 °C vs. 801 °C)"],
+["LiF","CsI","higher melting point",0,"Both +1/−1, but Li⁺ and F⁻ are much smaller → shorter distance → stronger attraction. (870 °C vs. 621 °C)"],
+["SiO₂","CO₂","higher melting point",0,"SiO₂ is a covalent network (break covalent bonds to melt). CO₂ is a molecular solid with weak LDF (sublimes at −78.5 °C)."],
+["ethanol","dimethyl ether","higher boiling point",0,"Same formula C₂H₆O. Only ethanol has O–H → hydrogen bonding."],
+["glycerol (3 OH)","ethanol (1 OH)","higher boiling point",0,"More O–H groups → more hydrogen bonds per molecule (and more electrons). (290 °C vs. 78 °C)"],
+["H₂O","Na⁺ with H₂O","stronger attraction to a water molecule",1,"Ion–dipole (full charge on Na⁺) is stronger than water–water hydrogen bonding."],
+["Mg²⁺","Ca²⁺","stronger ion–dipole attraction to water",0,"Same charge, but Mg²⁺ is smaller → closer approach → stronger Coulombic attraction."],
+["CO₂","NO₂","more ideal gas behavior",0,"Similar molar mass, but NO₂ is polar → dipole–dipole attractions → deviates more. CO₂ is nonpolar."]
+];
+let di=0,dOrder=[],dsc=0;
+function duel(){dOrder=sh(DUEL.map((_,k)=>k));di=0;dsc=0;duelQ()}
+function duelQ(){
+  if(di>=dOrder.length){$("main").innerHTML=`<div class="card"><h2>Duel complete</h2><p>Score: <b>${dsc}</b> / ${dOrder.length}</p><button class="on" onclick="duel()">Play again</button></div>`;return}
+  const d=DUEL[dOrder[di]];
+  $("main").innerHTML=`<div class="mu">Duel ${di+1} of ${dOrder.length} · Score ${dsc}</div><div class="pg"><i style="width:${di/dOrder.length*100}%"></i></div>
+  <div class="card"><div style="font-size:18px;text-align:center">Which has the <b style="color:var(--pink)">${d[2]}</b>?</div></div>
+  <div class="duel">${[0,1].map(k=>`<button class="opt" style="text-align:center" onclick="duelP(this,${k})" data-k="${k}">${d[k]}</button>`).join("")}</div><div id="f"></div>`;
+}
+function duelP(b,k){
+  const d=DUEL[dOrder[di]];document.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(+x.dataset.k==d[3])x.classList.add("ok")});
+  if(k==d[3])dsc++;else b.classList.add("bad");
+  $("f").innerHTML=`<div class="card"><b>${d[d[3]]}.</b> ${d[4]}</div><button class="on" onclick="di++;duelQ()">Next duel</button>`;
+}
+
+/* ---------- SOLIDS LAB ---------- */
+function svgIonic(){let s="";for(let r=0;r<5;r++)for(let c=0;c<7;c++){const p=(r+c)%2==0,x=20+c*25,y=18+r*25;s+=`<circle cx="${x}" cy="${y}" r="${p?8:11}" fill="${p?"#b98cff":"#ff8fd8"}"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="800" fill="#1a0833">${p?"+":"−"}</text>`}return s}
+function svgMetal(){let s="";for(let r=0;r<5;r++)for(let c=0;c<7;c++){const x=20+c*25,y=18+r*25;s+=`<circle cx="${x}" cy="${y}" r="9" fill="#ffd27a"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="10" font-weight="800" fill="#1a0833">+</text>`}for(let k=0;k<34;k++){s+=`<circle cx="${8+Math.random()*174}" cy="${6+Math.random()*120}" r="2.2" fill="#7cffd8"/>`}return s}
+function svgNet(){let s="";const P=[];for(let r=0;r<5;r++)for(let c=0;c<7;c++)P.push([20+c*25+(r%2?12:0),18+r*25]);P.forEach(([x,y],k)=>{const c=k%7,r=k/7|0;if(c<6)s+=`<line x1="${x}" y1="${y}" x2="${P[k+1][0]}" y2="${P[k+1][1]}" stroke="#b98cff" stroke-width="3"/>`;if(r<4)s+=`<line x1="${x}" y1="${y}" x2="${P[k+7][0]}" y2="${P[k+7][1]}" stroke="#b98cff" stroke-width="3"/>`});P.forEach(([x,y])=>s+=`<circle cx="${x}" cy="${y}" r="6" fill="#efe8ff"/>`);return s}
+function svgMol(){let s="";for(let r=0;r<4;r++)for(let c=0;c<4;c++){const x=22+c*44,y=18+r*32;s+=`<circle cx="${x}" cy="${y}" r="9" fill="#7cffd8"/><circle cx="${x+15}" cy="${y}" r="9" fill="#7cffd8"/><line x1="${x}" y1="${y}" x2="${x+15}" y2="${y}" stroke="#0d0519" stroke-width="2"/>`;if(c<3)s+=`<line x1="${x+25}" y1="${y}" x2="${x+34}" y2="${y}" stroke="#ff8fd8" stroke-width="2" stroke-dasharray="2 2"/>`;if(r<3)s+=`<line x1="${x+7}" y1="${y+10}" x2="${x+7}" y2="${y+22}" stroke="#ff8fd8" stroke-width="2" stroke-dasharray="2 2"/>`}return s}
+const CASES=[
+["S-01","The White Crystals",["White crystalline granules, no metallic luster","Melts at 801 °C","Hard; fractures when struck","Solid: no conductivity. Molten: conducts","Dissolves in water; solution conducts"],"Ionic","NaCl. Ions are locked in the lattice as a solid (no conduction) but become mobile when melted or dissolved. High MP from strong ionic bonds; brittle because shifting layers line up like charges."],
+["S-02","The Vanishing Evidence",["White solid that shrinks when left out","Sublimes at −78.5 °C (1 atm)","Does not conduct","Discrete linear triatomic molecules"],"Molecular","Dry ice, CO₂. Linear and nonpolar → only LDF between molecules. Subliming overcomes those weak LDF; the C=O covalent bonds inside each molecule stay intact."],
+["S-03","The Conductive Wire",["Reddish-orange metallic luster; drawn into wire","Melts ≈1085 °C","Excellent electrical and heat conductor as a solid","Bends without shattering; insoluble"],"Metallic","Copper. Delocalized valence electrons carry current and heat; cations slide past each other inside the electron sea, so it's ductile."],
+["S-04","The Unbreakable Crystal",["Clear, hard crystalline mineral","Very high melting temperature","Hard but brittle; insoluble","Does not conduct; Si and O in a continuous 3-D network"],"Covalent network","Quartz, SiO₂. Melting requires breaking strong covalent bonds throughout the network. Electrons are localized in bonds, so it doesn't conduct."],
+["S-05","The Purple Vapor",["Dark gray-purple crystals; purple vapor when warmed","Melts ≈114 °C","Does not conduct","Discrete diatomic molecules, nonpolar bonds","More soluble in nonpolar solvents"],"Molecular","Iodine, I₂. Nonpolar, so only LDF, but 106 electrons make the cloud very polarizable, so LDF are strong enough for a solid. Valence electrons are localized → no conduction."],
+["S-06","The Heat-Resistant Powder",["White crystalline powder","Melts ≈2852 °C","Hard and brittle","Solid doesn't conduct; molten conducts","Lattice of doubly charged ions"],"Ionic","Magnesium oxide, MgO. Compared with NaCl: charges are 2+/2− (vs. 1+/1−) and the ions are smaller, so Coulombic attraction is much stronger → MP 2852 °C vs. 801 °C."],
+["S-07","The Malleable Suspect",["Silvery, shiny; rolled into thin sheets","Melts ≈660 °C","Good conductor of heat and electricity as a solid","Malleable and ductile; insoluble"],"Metallic","Aluminum. Layers of cations shift while the shared electron sea keeps holding them together. Conduction is electrons moving, not whole atoms."],
+["S-08","The Low-Temperature Suspect",["White crystalline solid","Melts ≈80 °C","Does not conduct","Discrete molecules with nonpolar regions; no network","More soluble in nonpolar solvents"],"Molecular","Naphthalene (mothballs, C₁₀H₈). Weak LDF between large nonpolar molecules, but flat molecules pack neatly into an ordered crystal, so it's solid at room temperature with a low MP."]
+];
+const RQ=[["White solid, MP 884 °C, doesn't conduct as a solid, conducts dissolved in water","Ionic","Na₂SO₄"],["Gray solid, MP 1960 °C, conducts as a solid","Metallic","Rh"],["White solid, MP 54 °C, sparingly soluble in water","Molecular","C₆H₄Cl₂"],["Black solid, MP 2830 °C, insoluble in water","Covalent network","SiC"]];
+const STYPES=["Ionic","Metallic","Covalent network","Molecular"];
+function solids(){
+  $("main").innerHTML=`<div class="card"><h3 style="margin:0 0 4px"><i class="fa-solid fa-cubes"></i> Particle models</h3><div class="mu">Solid lines = bonds, dashed pink = IMFs.</div><div class="sol" style="margin-top:10px">
+  <div class="wv"><b>Ionic</b><svg viewBox="0 0 190 130">${svgIonic()}</svg><div class="mu">Alternating cations/anions</div></div>
+  <div class="wv"><b>Metallic</b><svg viewBox="0 0 190 130">${svgMetal()}</svg><div class="mu">Cations in a sea of e⁻</div></div>
+  <div class="wv"><b>Covalent network</b><svg viewBox="0 0 200 130">${svgNet()}</svg><div class="mu">Atoms bonded throughout</div></div>
+  <div class="wv"><b>Molecular</b><svg viewBox="0 0 190 130">${svgMol()}</svg><div class="mu">Molecules held by IMFs</div></div></div></div>
+  <div class="card"><h3 style="margin:0 0 4px"><i class="fa-solid fa-magnifying-glass"></i> CSI: Solids case files</h3><div class="mu">From your Case Files packet. Read the evidence, classify the solid, then reveal the verdict and particle-level reasoning.</div></div>
+  ${CASES.map((c,k)=>`<div class="card case"><div class="cid">CASE ${c[0]}</div><h3 style="margin:2px 0 4px">${c[1]}</h3><ul>${c[2].map(e=>`<li>${e}</li>`).join("")}</ul><div class="row">${STYPES.map(t=>`<button onclick="caseP(this,${k},'${t}')">${t}</button>`).join("")}</div><div id="cs${k}"></div></div>`).join("")}
+  <div class="card"><h3 style="margin:0 0 4px"><i class="fa-solid fa-table"></i> Unit Review #4: match the formula</h3><div class="mu">Formulas: C₆H₄Cl₂, Rh, SiC, Na₂SO₄. Decide, then reveal.</div>
+  ${RQ.map(r=>`<div class="wv">${r[0]}<div class="row"><button onclick="this.nextElementSibling.classList.toggle('hide')">Reveal</button><div class="ans hide" style="margin:0"><b>${r[1]}</b> → ${r[2]}</div></div></div>`).join("")}</div>`;
+}
+function caseP(b,k,t){
+  const c=CASES[k],ok=t==c[3];b.parentElement.querySelectorAll("button").forEach(x=>{x.disabled=true;if(x.textContent==c[3])x.classList.add("ok")});
+  if(!ok)b.classList.add("bad");
+  $("cs"+k).innerHTML=`<div class="ans ${ok?"":"no"}"><b>${ok?"Case closed.":"Wrong suspect."} ${c[3]} solid.</b> ${c[4]}</div>`;
+}
+
+/* ---------- GAS LAB ---------- */
+const R=0.08206;
+/* name, molar mass g/mol, van der Waals a (L²·atm/mol²), b (L/mol), color */
+const GAS={He:[4.003,0.0346,0.0238,"#7cffd8"],H2:[2.016,0.244,0.0266,"#efe8ff"],N2:[28.02,1.39,0.0391,"#b98cff"],O2:[32.00,1.36,0.0318,"#ff8fd8"],CO2:[44.01,3.59,0.0427,"#ffd27a"],NH3:[17.03,4.17,0.0371,"#4da3ff"],Xe:[131.3,4.19,0.0511,"#ff6b81"]};
+const GN={He:"He",H2:"H₂",N2:"N₂",O2:"O₂",CO2:"CO₂",NH3:"NH₃",Xe:"Xe"};
+let G={g:"N2",cg:"He",n:1,T:300,V:22.4},gAnim=null,parts=[];
+function stopGas(){if(gAnim){cancelAnimationFrame(gAnim);gAnim=null}}
+function gas(){
+  $("main").innerHTML=`<div class="card"><h3 style="margin:0 0 4px"><i class="fa-solid fa-wind"></i> Ideal gas chamber</h3><div class="mu">Move the sliders and watch P = nRT/V. The piston (right wall) shows volume. Wall hits glow pink. Particle speed ∝ √(T/M).</div>
+  <div class="row"><label class="mu">Gas <select id="gg" onchange="G.g=this.value;gUpd(true)">${Object.keys(GAS).map(k=>`<option value="${k}" ${k==G.g?"selected":""}>${GN[k]} (${GAS[k][0]} g/mol)</option>`).join("")}</select></label></div>
+  <canvas id="gc" width="900" height="220"></canvas>
+  <div class="slab"><span>Moles n: <b id="vn"></b></span></div><input type="range" id="sn" min="0.2" max="12" step="0.1" value="${G.n}" oninput="G.n=+this.value;gUpd(true)">
+  <div class="slab"><span>Temperature T: <b id="vT"></b></span></div><input type="range" id="sT" min="50" max="1000" step="5" value="${G.T}" oninput="G.T=+this.value;gUpd()">
+  <div class="slab"><span>Volume V: <b id="vV"></b></span></div><input type="range" id="sV" min="0.4" max="50" step="0.1" value="${G.V}" oninput="G.V=+this.value;gUpd()">
+  <div class="meter"><div><span>Ideal pressure</span><b id="mP"></b></div><div><span>Real (van der Waals) P <span class="xtra">★</span></span><b id="mR"></b></div><div><span>Avg. KE per particle</span><b id="mK"></b></div><div><span>rms speed</span><b id="mS"></b></div></div>
+  <div class="wv" id="gNote"></div>
+  <div class="row"><button onclick="gPreset(1,273.15,22.4)">STP (1 mol, 273 K, 22.4 L)</button><button onclick="gPreset(10,150,1)">Squeeze it cold (real gas!)</button><button onclick="gPreset(1,800,40)">Hot &amp; roomy (ideal)</button></div></div>
+  <div class="card"><h3 style="margin:0 0 4px"><i class="fa-solid fa-chart-area"></i> Maxwell–Boltzmann distribution</h3><div class="mu">Solid = your gas at the slider T. Dashed = comparison gas at the same T. Dotted = your gas at 300 K.</div>
+  <div class="row"><label class="mu">Compare with <select id="gcg" onchange="G.cg=this.value;mbDraw()">${Object.keys(GAS).map(k=>`<option value="${k}" ${k==G.cg?"selected":""}>${GN[k]}</option>`).join("")}</select></label></div>
+  <svg id="mb" class="mb" viewBox="0 0 600 260"></svg><div class="mu" id="mbNote" style="margin-top:6px"></div></div>`;
+  gUpd(true);gLoop();
+}
+function gPreset(n,T,V){G.n=n;G.T=T;G.V=V;$("sn").value=n;$("sT").value=T;$("sV").value=V;gUpd(true)}
+function gUpd(reseed){
+  const [M,a,b,col]=GAS[G.g],P=G.n*R*G.T/G.V,free=G.V-G.n*b,Pr=free>0?G.n*R*G.T/free-a*G.n*G.n/(G.V*G.V):NaN;
+  $("vn").textContent=G.n.toFixed(1)+" mol";$("vT").textContent=`${G.T} K (${(G.T-273.15).toFixed(0)} °C)`;$("vV").textContent=G.V.toFixed(1)+" L";
+  $("mP").textContent=P.toFixed(2)+" atm";$("mR").textContent=isFinite(Pr)?Pr.toFixed(2)+" atm":"—";
+  $("mK").textContent=(1.5*1.380649e-23*G.T*1e21).toFixed(2)+"×10⁻²¹ J";
+  $("mS").textContent=Math.sqrt(3*8.314*G.T/(M/1000)).toFixed(0)+" m/s";
+  const dev=isFinite(Pr)?(Pr-P)/P*100:0;let msg;
+  if(!isFinite(Pr)||free<=0)msg="Particles are packed so tightly that the gas would have condensed. The ideal gas law has completely broken down.";
+  else if(Math.abs(dev)<2)msg=`<b style="color:var(--ok)">Behaving ideally</b> (real P within ${Math.abs(dev).toFixed(1)}% of ideal). Particles are fast and far apart, so IMFs and particle volume don't matter.`;
+  else if(dev<0)msg=`<b style="color:var(--gold)">Non-ideal: real P is ${Math.abs(dev).toFixed(0)}% LOWER.</b> At this T and crowding, <b>attractions</b> between ${GN[G.g]} particles pull them back from the walls, so they hit less often and less hard.`;
+  else msg=`<b style="color:var(--pink)">Non-ideal: real P is ${dev.toFixed(0)}% HIGHER.</b> The <b>particles' own volume</b> takes up a real share of the container, leaving less free space.`;
+  $("gNote").innerHTML=msg+`<div class="mu" style="margin-top:4px">Same T for every gas → same average KE. Lighter gas → faster. Real-gas values use van der Waals constants (beyond the AP calculations, just for intuition).</div>`;
+  if(reseed){const N=Math.min(150,Math.round(G.n*14));parts=Array.from({length:N},()=>({x:Math.random(),y:Math.random(),a:Math.random()*Math.PI*2,f:.6+Math.random()*.8}))}
+  mbDraw();
+}
+function gLoop(){
+  const cv=$("gc");if(!cv){stopGas();return}
+  const ctx=cv.getContext("2d"),W=cv.width,H=cv.height,[M,,,col]=GAS[G.g];
+  const boxW=Math.max(40,(G.V/50)*(W-20)),sp=Math.sqrt(G.T/M)*0.0016;
+  ctx.fillStyle="#0a0414";ctx.fillRect(0,0,W,H);
+  ctx.fillStyle="#2a1050";ctx.fillRect(10+boxW,4,W-14-boxW,H-8);
+  let flash=false;
+  parts.forEach(p=>{
+    p.x+=Math.cos(p.a)*sp*p.f*(W/boxW)*0.4;p.y+=Math.sin(p.a)*sp*p.f*2;
+    if(p.x<0){p.x=-p.x;p.a=Math.PI-p.a}if(p.x>1){p.x=2-p.x;p.a=Math.PI-p.a;flash=true}
+    if(p.y<0){p.y=-p.y;p.a=-p.a}if(p.y>1){p.y=2-p.y;p.a=-p.a}
+    ctx.beginPath();ctx.arc(10+p.x*boxW,8+p.y*(H-16),4,0,7);ctx.fillStyle=col;ctx.fill();
+  });
+  ctx.fillStyle=flash?"#ff8fd8":"#b98cff";ctx.fillRect(6+boxW,4,8,H-8);
+  ctx.strokeStyle="#4b2490";ctx.lineWidth=2;ctx.strokeRect(5,3,W-10,H-6);
+  gAnim=requestAnimationFrame(gLoop);
+}
+function mbDraw(){
+  const s=$("mb");if(!s)return;
+  const f=(Mg,T,v)=>{const m=Mg/1000;return 4*Math.PI*Math.pow(m/(2*Math.PI*8.314*T),1.5)*v*v*Math.exp(-m*v*v/(2*8.314*T))};
+  const vmax=4000,curves=[[G.g,G.T,""],[G.cg,G.T,"6 5"],[G.g,300,"2 4"]];
+  let ymax=0;const pts=curves.map(([g,T])=>{const a=[];for(let v=0;v<=vmax;v+=25){const y=f(GAS[g][0],T,v);ymax=Math.max(ymax,y);a.push([v,y])}return a});
+  const X0=50,Y0=225,Wd=530,Ht=200;
+  let o=`<line x1="${X0}" y1="${Y0}" x2="${X0+Wd}" y2="${Y0}" stroke="#c6b0ee"/><line x1="${X0}" y1="${Y0}" x2="${X0}" y2="${Y0-Ht}" stroke="#c6b0ee"/>`;
+  for(let v=0;v<=vmax;v+=1000)o+=`<text x="${X0+v/vmax*Wd}" y="${Y0+16}" fill="#c6b0ee" font-size="12" text-anchor="middle">${v}</text>`;
+  o+=`<text x="${X0+Wd/2}" y="${Y0+32}" fill="#c6b0ee" font-size="12" text-anchor="middle">speed (m/s)</text><text x="16" y="${Y0-Ht/2}" fill="#c6b0ee" font-size="12" transform="rotate(-90 16 ${Y0-Ht/2})" text-anchor="middle">fraction of particles</text>`;
+  pts.forEach((a,k)=>{const [g,T,da]=curves[k];o+=`<path d="M${a.map(([v,y])=>`${(X0+v/vmax*Wd).toFixed(1)} ${(Y0-y/ymax*Ht).toFixed(1)}`).join(" L")}" fill="none" stroke="${k==2?"#c6b0ee":GAS[g][3]}" stroke-width="${k==0?3:2}" ${da?`stroke-dasharray="${da}"`:""}/>`});
+  o+=`<text x="${X0+Wd-4}" y="${Y0-Ht+12}" fill="${GAS[G.g][3]}" font-size="12" text-anchor="end">— ${GN[G.g]} at ${G.T} K</text><text x="${X0+Wd-4}" y="${Y0-Ht+28}" fill="${GAS[G.cg][3]}" font-size="12" text-anchor="end">- - ${GN[G.cg]} at ${G.T} K</text><text x="${X0+Wd-4}" y="${Y0-Ht+44}" fill="#c6b0ee" font-size="12" text-anchor="end">··· ${GN[G.g]} at 300 K</text>`;
+  s.innerHTML=o;
+  const m1=GAS[G.g][0],m2=GAS[G.cg][0];
+  $("mbNote").innerHTML=m1==m2?"Same gas, same T: the curves overlap.":`${m1>m2?GN[G.g]:GN[G.cg]} is heavier, so its curve is taller and narrower at lower speeds. Both have the <b>same average KE</b> because they're at the same temperature.`+(G.T>300?" Your gas at the slider T is hotter than 300 K, so its curve is shifted right and flatter than the dotted one.":G.T<300?" Your gas is colder than 300 K, so its curve is taller and shifted left of the dotted one.":"");
+}
+
+/* ---------- CALC DRILL ---------- */
+const rnd=(a,b,d=1)=>+(a+Math.random()*(b-a)).toFixed(d);
+const pick1=a=>a[Math.random()*a.length|0];
+const f3=x=>{const a=Math.abs(x);return a>=1000||a<0.01?x.toExponential(2):x.toPrecision(3)};
+const CALC={
+ ideal:()=>{
+  const g=pick1(["N₂","O₂","CO₂","He","Ar","CH₄"]),n=rnd(0.15,4,2),T=rnd(250,500,0),V=rnd(1,40,1),P=n*R*T/V,t=pick1(["P","V","n","T"]);
+  const Tc=(T-273.15).toFixed(1),useTorr=Math.random()<.4,Pt=P*760;
+  const Ps=useTorr?`${Pt.toFixed(0)} torr`:`${P.toFixed(2)} atm`,Pa=useTorr?Pt.toFixed(0)/760:+P.toFixed(2);
+  const Pstep=useTorr?`<li>P = ${Pt.toFixed(0)} torr × (1 atm / 760 torr) = ${Pa.toFixed(3)} atm</li>`:"";
+  const Tstep=`<li>T = ${Tc} °C + 273.15 = ${(+Tc+273.15).toFixed(2)} K</li>`,Tk=+Tc+273.15;
+  if(t=="P"){const a=n*R*Tk/V;return [`What pressure (atm) do ${n} mol of ${g} exert in a ${V} L container at ${Tc} °C?`,a,`<li>Ideal gas law, one set of conditions: P = nRT/V</li>${Tstep}<li>P = (${n})(0.08206)(${Tk.toFixed(2)}) / ${V} = <b>${f3(a)} atm</b></li>`]}
+  if(t=="V"){const a=n*R*Tk/Pa;return [`What volume (L) do ${n} mol of ${g} occupy at ${Ps} and ${Tc} °C?`,a,`<li>V = nRT/P</li>${Pstep}${Tstep}<li>V = (${n})(0.08206)(${Tk.toFixed(2)}) / ${Pa.toFixed(3)} = <b>${f3(a)} L</b></li>`]}
+  if(t=="n"){const a=Pa*V/(R*Tk);return [`How many moles of ${g} are in a ${V} L rigid tank at ${Ps} and ${Tc} °C?`,a,`<li>n = PV/RT</li>${Pstep}${Tstep}<li>n = (${Pa.toFixed(3)})(${V}) / [(0.08206)(${Tk.toFixed(2)})] = <b>${f3(a)} mol</b></li>`]}
+  const a=Pa*V/(n*R);return [`At what temperature (K) will ${n} mol of ${g} exert ${Ps} in a ${V} L container?`,a,`<li>T = PV/nR</li>${Pstep}<li>T = (${Pa.toFixed(3)})(${V}) / [(${n})(0.08206)] = <b>${f3(a)} K</b> (${f3(a-273.15)} °C)</li>`];
+ },
+ combined:()=>{
+  const P1=rnd(0.5,3,2),V1=rnd(1,25,1),T1c=rnd(-20,120,0),P2=rnd(0.3,4,2),T2c=rnd(-40,200,0),T1=T1c+273.15,T2=T2c+273.15,V2=P1*V1*T2/(P2*T1);
+  const ctx=pick1(["A balloon","A sample of gas in a flexible container","A gas bubble"]);
+  return [`${ctx} has V = ${V1} L at ${P1} atm and ${T1c} °C. What is its volume (L) at ${P2} atm and ${T2c} °C? (n constant)`,V2,`<li>Conditions change → combined gas law, cancel n: P₁V₁/T₁ = P₂V₂/T₂</li><li>T₁ = ${T1.toFixed(2)} K, T₂ = ${T2.toFixed(2)} K</li><li>V₂ = V₁ × (P₁/P₂) × (T₂/T₁) = ${V1} × (${P1}/${P2}) × (${T2.toFixed(2)}/${T1.toFixed(2)}) = <b>${f3(V2)} L</b></li>`];
+ },
+ single:()=>{
+  const k=pick1(["boyle","charles","gay"]);
+  if(k=="boyle"){const P1=rnd(0.5,2,2),V1=rnd(2,20,1),P2=rnd(0.5,4,2),V2=P1*V1/P2;return [`At constant T and n, a gas at ${P1} atm occupies ${V1} L. What is its volume (L) at ${P2} atm?`,V2,`<li>Boyle's law: P₁V₁ = P₂V₂</li><li>V₂ = (${P1})(${V1}) / ${P2} = <b>${f3(V2)} L</b></li>`]}
+  if(k=="charles"){const V1=rnd(1,10,1),T1c=rnd(0,100,0),T2c=rnd(-50,300,0),V2=V1*(T2c+273.15)/(T1c+273.15);return [`A gas at constant P occupies ${V1} L at ${T1c} °C. What is its volume (L) at ${T2c} °C?`,V2,`<li>Charles's law: V₁/T₁ = V₂/T₂ (Kelvin!)</li><li>V₂ = ${V1} × ${(T2c+273.15).toFixed(2)} / ${(T1c+273.15).toFixed(2)} = <b>${f3(V2)} L</b></li>`]}
+  const P1=rnd(0.8,2,2),T1c=rnd(80,130,0),T2c=rnd(-10,25,0),P2=P1*(T2c+273.15)/(T1c+273.15);return [`A sealed rigid can holds gas at ${P1} atm and ${T1c} °C. What is the pressure (atm) after it cools to ${T2c} °C?`,P2,`<li>Rigid → V constant → Gay-Lussac's law: P₁/T₁ = P₂/T₂</li><li>P₂ = ${P1} × ${(T2c+273.15).toFixed(2)} / ${(T1c+273.15).toFixed(2)} = <b>${f3(P2)} atm</b></li>`];
+ },
+ dalton:()=>{
+  const g=sh([["N₂",28.02],["O₂",32.00],["He",4.003],["Ar",39.95],["CH₄",16.04],["CO₂",44.01]]).slice(0,3),useMass=Math.random()<.4;
+  const amt=g.map(()=>useMass?rnd(2,40,1):rnd(0.1,5,2)),mol=amt.map((a,k)=>useMass?a/g[k][1]:a),tot=mol.reduce((a,b)=>a+b),Pt=pick1([rnd(0.8,6,2),rnd(600,1500,0)]),u=Pt>100?"mmHg":"atm",X=mol[0]/tot,ans=X*Pt;
+  return [`A mixture contains ${amt.map((a,k)=>`${a} ${useMass?"g":"mol"} ${g[k][0]}`).join(", ")}. The total pressure is ${Pt} ${u}. What is the partial pressure of ${g[0][0]} (in ${u})?`,ans,`${useMass?`<li>Convert grams to moles: ${mol.map((m,k)=>`${g[k][0]} = ${amt[k]}/${g[k][1]} = ${m.toFixed(3)} mol`).join("; ")}</li>`:""}<li>Total moles = ${tot.toFixed(3)} mol</li><li>X(${g[0][0]}) = ${mol[0].toFixed(3)} / ${tot.toFixed(3)} = ${X.toFixed(3)}</li><li>P = X · P_total = ${X.toFixed(3)} × ${Pt} = <b>${f3(ans)} ${u}</b></li>`];
+ },
+ molar:()=>{
+  const gs=[["CO₂",44.01],["Ar",39.95],["O₂",32.00],["N₂",28.02],["CH₄",16.04],["SO₂",64.07],["Cl₂",70.90]],[nm,M]=pick1(gs),V=rnd(0.25,2,3),Tc=rnd(15,35,1),Pt=rnd(720,780,0),P=Pt/760,n=P*V/(R*(Tc+273.15)),m=+(n*M).toFixed(3);
+  const ans=m*R*(Tc+273.15)/(P*V);
+  return [`An unknown gas sample has a mass of ${m} g in a ${V} L flask at ${Tc} °C and ${Pt} torr. What is its molar mass (g/mol)?`,ans,`<li>P = ${Pt}/760 = ${P.toFixed(4)} atm; T = ${(Tc+273.15).toFixed(2)} K</li><li>n = PV/RT = (${P.toFixed(4)})(${V}) / [(0.08206)(${(Tc+273.15).toFixed(2)})] = ${(P*V/(R*(Tc+273.15))).toFixed(5)} mol</li><li>M = mass / n = <b>${f3(ans)} g/mol</b> (≈ ${nm})</li>`];
+ },
+ water:()=>{
+  const VP={18:15.5,19:16.5,20:17.5,21:18.7,22:19.8,23:21.1,24:22.4,25:23.8,26:25.2},Tc=pick1(Object.keys(VP)).valueOf()*1,Pb=rnd(735,770,0),V=rnd(20,45,1),PH=(Pb-VP[Tc])/760,n=PH*(V/1000)/(R*(Tc+273.15));
+  return [`H₂ is collected over water at ${Tc} °C. The gas volume is ${V} mL and barometric pressure is ${Pb} mmHg (P_H₂O at ${Tc} °C = ${VP[Tc]} mmHg). How many moles of H₂ were collected?`,n,`<li>Dalton: P(H₂) = ${Pb} − ${VP[Tc]} = ${(Pb-VP[Tc]).toFixed(1)} mmHg = ${PH.toFixed(4)} atm</li><li>V = ${(V/1000).toFixed(4)} L; T = ${(Tc+273.15).toFixed(2)} K</li><li>n = PV/RT = <b>${f3(n)} mol</b></li>`];
+ },
+ convert:()=>{
+  const k=pick1(["ta","at","ck","ml"]);
+  if(k=="ta"){const t=rnd(500,1600,0);return [`Convert ${t} torr to atm.`,t/760,`<li>${t} torr × (1 atm / 760 torr) = <b>${f3(t/760)} atm</b></li>`]}
+  if(k=="at"){const a=rnd(0.3,3,2);return [`Convert ${a} atm to mmHg.`,a*760,`<li>${a} atm × 760 mmHg/atm = <b>${f3(a*760)} mmHg</b></li>`]}
+  if(k=="ck"){const c=rnd(-80,300,1);return [`Convert ${c} °C to kelvins.`,c+273.15,`<li>K = °C + 273.15 = <b>${(c+273.15).toFixed(2)} K</b></li>`]}
+  const ml=rnd(50,4000,0);return [`Convert ${ml} mL to L.`,ml/1000,`<li>${ml} mL × (1 L / 1000 mL) = <b>${f3(ml/1000)} L</b></li>`];
+ }
+};
+const CALCN={ideal:"Ideal gas law",combined:"Combined gas law",single:"Boyle / Charles / Gay-Lussac",dalton:"Dalton's law",molar:"Molar mass",water:"Gas over water",convert:"Unit conversions"};
+let cOn=new Set(Object.keys(CALC)),cq=null,cs=0,ct=0;
+function calc(){cq=null;calcQ()}
+function calcQ(){
+  const k=pick1([...cOn]);cq=[k,...CALC[k]()];
+  $("main").innerHTML=`<div class="card"><div class="mu">Fresh numbers every time. Answers within 2% count (rounding). Score ${cs} / ${ct}</div><div class="bar">${Object.entries(CALCN).map(([k,v])=>`<button class="${cOn.has(k)?"on":""}" onclick="cOn.has('${k}')?cOn.delete('${k}'):cOn.add('${k}');if(!cOn.size)cOn.add('${k}');calcQ()">${v}</button>`).join("")}</div></div>
+  <div class="card"><span class="tag">${CALCN[k]}</span><div style="margin-top:8px;font-size:17px">${cq[1]}</div>
+  <div class="row"><input type="number" step="any" id="ca" placeholder="Your answer" style="flex:1;min-width:160px" onkeydown="if(event.key==='Enter')calcC()"><button class="on" onclick="calcC()">Check</button><button onclick="calcC(true)">Show solution</button></div><div id="f"></div></div>`;
+  setTimeout(()=>$("ca")&&$("ca").focus(),30);
+}
+function calcC(skip){
+  const v=parseFloat($("ca").value),a=cq[2];if(!skip&&isNaN(v))return;
+  const ok=!skip&&Math.abs(v-a)<=Math.abs(a)*0.02;ct++;if(ok)cs++;
+  $("ca").disabled=true;document.querySelectorAll("#main .card .row button").forEach(b=>b.disabled=true);
+  $("f").innerHTML=`<div class="ans ${ok?"":"no"}"><b>${ok?"Correct!":skip?"Solution:":"Not quite."}</b> Answer ≈ <b>${f3(a)}</b><ol class="steps">${cq[3]}</ol></div><button class="on" onclick="calcQ()">Next problem</button>`;
+}
+/* ---------- FLASHCARDS ---------- */
+function flash(){
+  if(i>=Q.length)return done();
+  const k=Q[i],d=D[k];
+  $("main").innerHTML=`<div class="mu">Card ${i+1} of ${Q.length}. Tap the card (or press Space) to flip.</div>${prog()}
+  <div class="card fc" onclick="flip=!flip;flash()" tabindex="0" role="button" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();flip=!flip;flash()}">${flip!=rv?`<div>${d[2]}</div><div class="mu" style="margin-top:10px">${d[0]}</div>`:`<div class="t">${d[0]}</div><div style="margin-top:8px"><span class="tag">${C[d[1]]}</span>${X(d)}</div>`}</div>
+  <div class="row"><button onclick="i=Math.max(0,i-1);flip=false;flash()">Back</button>
+  <button onclick="addMiss(${k});bar();i++;flip=false;flash()"><i class="fa-solid fa-rotate"></i> Still learning</button>
+  <button class="on" onclick="delMiss(${k});bar();sc++;i++;flip=false;flash()"><i class="fa-solid fa-check"></i> Mastered</button>
+  <button onclick="rv=!rv;flip=false;flash()">Front: ${rv?"definition":"term"}</button></div>`;
+}
+
+/* ---------- QUIZ ---------- */
+function quiz(){
+  if(i>=Q.length)return done();
+  const k=Q[i],d=D[k];
+  const same=sh(D.map((x,j)=>j).filter(j=>j!=k&&D[j][1]==d[1])),other=sh(D.map((x,j)=>j).filter(j=>j!=k&&D[j][1]!=d[1]));
+  const o=sh([k,...[...same,...other].slice(0,3)]);
+  $("main").innerHTML=`<div class="mu">Question ${i+1} of ${Q.length} · Score ${sc}</div>${prog()}
+  <div class="card"><span class="tag">${C[d[1]]}</span><div style="margin-top:8px;font-size:17px">${d[2]}</div></div>
+  <div id="o">${o.map(j=>`<button class="opt" data-k="${j}" onclick="pick(this,${j==k})">${D[j][0]}</button>`).join("")}</div><div id="f"></div>`;
+}
+function pick(b,ok){
+  const k=Q[i];document.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(+x.dataset.k==k)x.classList.add("ok")});
+  if(ok)sc++;else{b.classList.add("bad");addMiss(k);bar()}
+  $("f").innerHTML=`<div class="card"><b>${D[k][0]}:</b> ${D[k][2]}</div><button class="on" onclick="i++;quiz()">Next question</button>`;
+}
+
+/* ---------- MATCHING ---------- */
+let M={t:[],d:[],s:null,left:0,bad:null};
+function match(){const r=Q.slice(i,i+6);if(!r.length)return done();M={t:sh(r),d:sh(r),s:null,left:r.length,bad:null};drawM()}
+function drawM(){
+  $("main").innerHTML=`<div class="mu">Tap a term, then its definition. ${M.left} left · Score ${sc}</div>${prog()}<div class="grid"><div>${M.t.map(k=>`<button class="opt ${M.s&&M.s[0]=="t"&&M.s[1]==k?"on":""} ${M.bad&&M.bad.includes("t"+k)?"bad":""}" onclick="selM('t',${k})">${D[k][0]}</button>`).join("")}</div><div>${M.d.map(k=>`<button class="opt ${M.s&&M.s[0]=="d"&&M.s[1]==k?"on":""} ${M.bad&&M.bad.includes("d"+k)?"bad":""}" style="font-size:14px" onclick="selM('d',${k})">${D[k][2]}</button>`).join("")}</div></div>`;
+}
+function selM(t,k){
+  M.bad=null;
+  if(!M.s||M.s[0]==t){M.s=[t,k];return drawM()}
+  const a=M.s[1];
+  if(a==k){sc++;M.t=M.t.filter(x=>x!=k);M.d=M.d.filter(x=>x!=k);M.left--;M.s=null;if(!M.left){i+=6;return i>=Q.length?done():match()}}
+  else{const tk=t=="t"?k:a;addMiss(tk);bar();M.bad=[M.s[0]+a,t+k];M.s=null;setTimeout(()=>{M.bad=null;drawM()},700)}
+  drawM();
+}
+
+/* ---------- TYPE-IN ---------- */
+const norm=s=>s.toLowerCase().replace(/['’]/g,"").replace(/[^a-z0-9]+/g," ").trim();
+function variants(t){const v=[t,t.replace(/\(.*?\)/g,"")];const m=t.match(/\((.*?)\)/);if(m)v.push(m[1]);return v.map(norm).filter(Boolean)}
+function lev(a,b){const d=Array.from({length:a.length+1},(_,i)=>[i]);for(let j=1;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]==b[j-1]?0:1));return d[a.length][b.length]}
+function typ(){
+  if(i>=Q.length)return done();
+  const d=D[Q[i]];
+  $("main").innerHTML=`<div class="mu">Term ${i+1} of ${Q.length} · Score ${sc}</div>${prog()}<div class="card"><span class="tag">${C[d[1]]}</span><div style="margin-top:8px;font-size:17px">${d[2]}</div><div class="mu" style="margin-top:6px">Hint: ${d[0].length} characters, starts with “${d[0][0]}”</div></div>
+  <input type="text" id="ans" placeholder="Type the term, then press Enter" onkeydown="if(event.key==='Enter')chkT()" autocomplete="off"><div class="row"><button class="on" onclick="chkT()">Submit</button><button onclick="$('ans').value='';chkT(true)">Show answer</button></div><div id="f"></div>`;
+  setTimeout(()=>$("ans")&&$("ans").focus(),30);
+}
+function chkT(skip){
+  const k=Q[i],d=D[k],inp=norm($("ans").value);if(!skip&&!inp)return;
+  const vs=variants(d[0]),exact=vs.includes(inp),close=!exact&&inp.length>5&&vs.some(v=>lev(inp,v)<=Math.max(1,Math.floor(v.length/8)));
+  $("ans").disabled=true;document.querySelectorAll("#main .row button").forEach(b=>b.disabled=true);
+  if(exact||close){sc++;$("f").innerHTML=`<div class="card ok">${close?"Close enough (check the spelling): ":"Correct! "}<b>${d[0]}</b></div><button class="on" onclick="i++;typ()">Next</button>`}
+  else{addMiss(k);bar();$("f").innerHTML=`<div class="card bad">The term is <b>${d[0]}</b>.</div><button class="on" onclick="i++;typ()">Next</button>`}
+}
+
+
+/* ---------- PRACTICE MCQ ---------- */
+/* [stem, answer, distractors, why]. Adapted from your Practice Sets #1 and #2. */
+const APP=[
+["Which lists IMFs from weakest to strongest?","London dispersion < dipole–dipole < hydrogen bonds",["dipole–dipole < London dispersion < hydrogen bonds","hydrogen bonds < dipole–dipole < London dispersion","London dispersion < hydrogen bonds < dipole–dipole"],"For molecules of similar size, LDF is weakest and hydrogen bonding is strongest."],
+["Which type of solid consistently has the highest melting points?","Covalent network solids",["Metals","Salts (ionic)","Hydrogen-bonded molecular solids"],"Melting a network solid means breaking covalent bonds throughout the whole crystal."],
+["Which element has the greatest polarizability?","Xe",["He","Ne","Ar"],"Xe has the most electrons and the largest electron cloud, so it distorts most easily."],
+["Which compound will NOT form hydrogen bonds with itself?","CH₂F₂",["CH₃OH","H₂NCH₂CH₂CH₃","HClO"],"CH₂F₂'s hydrogens are bonded to carbon, not to F, O, or N."],
+["Kept at the same temperature, which compound evaporates most quickly?","C₆H₁₄",["C₈H₁₈","C₈H₁₇OH","C₈H₁₇NH₂"],"Smallest nonpolar molecule → weakest IMFs (LDF only) → highest vapor pressure."],
+["Diamond is classified as a:","Covalent network crystal",["Amorphous solid","Metallic crystal","Molecular crystal"],"Each C is covalently bonded to four others in a continuous 3-D network."],
+["A model of a diatomic gas just above its boiling point shows molecules but no attractions. How is the model limited in explaining condensation?","It doesn't show temporary fluctuating dipoles that create net attractions",["It doesn't show hydrogen bonds forming and breaking","It doesn't show ion–induced dipole attractions","It doesn't show interacting permanent dipoles"],"A nonpolar diatomic element (like N₂ or Cl₂) has only London dispersion forces from temporary dipoles."],
+["HF has a smaller electron cloud than F₂ but a much higher boiling point. Why doesn't the dispersion-force model account for this?","HF has hydrogen bonding in addition to weak dispersion forces",["F₂ has greater mass than HF","HF has strong ionic H⁺/F⁻ interactions","F₂ is soluble in water while HF isn't"],"H bonded to F creates hydrogen bonding, which dispersion forces alone don't describe. Liquid HF is molecular, not ionic."],
+["In which liquid do the IMFs include dipole–dipole forces?","CH₂F₂",["F₂","CH₄","CF₄"],"CH₂F₂'s tetrahedral shape is asymmetric, so its dipoles don't cancel. The others are nonpolar."],
+["Under the same conditions, the London dispersion forces are weakest for:","H₂",["O₂","Xe","F₂"],"H₂ has only 2 electrons, the least polarizable cloud."],
+["Diagram 1 shows larger, singly charged ions; diagram 2 shows smaller, doubly charged ions. Which is correct?","Diagram 1 is NaCl; it has the lower MP because its +1/−1 attractions are weaker than in MgS",["Diagram 1 is NaCl; it has the lower MP because its +1/−1 attractions are stronger","Diagram 1 is MgS; it has the lower MP because its 2+/2− attractions are stronger","Diagram 1 is MgS; it has the lower MP because its attractions are weaker"],"Coulomb's law: smaller charges → weaker attraction → lower melting point."],
+["Which test best shows a white crystalline solid is ionic?","Testing the conductivity of its aqueous solution",["Examining the crystals under a microscope","Measuring its density","Testing the conductivity of the solid crystals"],"Ionic and molecular solids both fail to conduct as solids; only dissolved (or molten) ionic compounds conduct."],
+["A white crystalline solid melts at 320 °C, doesn't conduct as a solid, but conducts in aqueous solution. It could be:","NaOH",["C₆H₁₂O₆","SiO₂","Cu"],"Moderately high MP + conducts only when dissolved → ionic."],
+["Which best explains why NH₃ boils at −28 °C but PH₃ boils at −126 °C?","NH₃ has hydrogen bonding that is stronger than the dipole–dipole forces in PH₃",["NH₃'s dispersion forces are weaker than PH₃'s","NH₃'s dispersion forces are stronger than PH₃'s dipole–dipole forces","NH₃'s hydrogen bonding is weaker than PH₃'s dipole–dipole forces"],"N is F/O/N; P isn't. PH₃ actually has the stronger LDF, so hydrogen bonding explains the difference."],
+["A crystalline substance with a low melting point doesn't conduct when melted or in solution. It is likely:","A molecular solid",["A covalent network solid","An ionic solid","A metallic solid"],"Low MP → weak IMFs. No conduction in any state → no mobile ions or electrons."],
+["Which gives a correct characteristic of I₂(s) with a correct explanation?","It doesn't conduct because its valence electrons are localized in bonding and nonbonding pairs",["It has a high MP because of weak IMFs","It is hard because it forms a 3-D covalent network","It is very soluble in water because it is polar"],"I₂ is a nonpolar molecular solid; electrons stay in bonds and lone pairs."],
+["Diamond is extremely hard because its crystals:","Are giant molecules where each atom forms strong covalent bonds with all its neighbors",["Contain atoms that are intrinsically hard","Consist of strongly attracted ions","Contain delocalized electrons belonging to the whole crystal"],"A rigid 3-D network of covalent bonds with fixed angles resists deformation."],
+["Gases are easily compressed because their molecules:","Are relatively far apart",["Are in constant motion","Have small masses","Have a real, nonzero volume"],"KMT postulate 2: a gas is mostly empty space."],
+["Two gases' Maxwell–Boltzmann curves are drawn at the same temperature. Gas A peaks at a lower speed and is taller and narrower. Which has the greater molar mass?","Gas A",["Gas B","They have the same molar mass","It can't be determined without pressure"],"At the same T (same KE), the heavier gas moves slower, giving a narrower curve at lower speeds."],
+["At the same temperature, which gas has the fastest average molecular speed?","H₂",["CO₂","CH₄","C₈H₁₈"],"Same T → same KE; smallest mass → highest speed."],
+["Which conditions make a gas deviate most from ideal behavior?","Low temperature and high pressure",["High temperature and low pressure","High temperature and high pressure","Low temperature and low pressure"],"Slow, crowded particles feel IMFs and their own volume."],
+["How does the average KE of H₂ compare with O₂ when both are at 25 °C?","They are equal",["H₂'s KE is 1/4 as great","H₂'s KE is 1/16 as great","H₂'s KE is 4 times as great"],"Average kinetic energy depends only on temperature."],
+["7.0 mol N₂, 2.5 mol O₂, and 0.50 mol He exert 0.90 atm total. What is P(N₂)?","0.63 atm",["0.13 atm","0.27 atm","0.90 atm"],"X(N₂) = 7.0/10.0 = 0.70; 0.70 × 0.90 = 0.63 atm."],
+["Equal masses of ideal gases X, Y, and Z are mixed in a rigid container. The partial pressure of X:","Depends on the relative molar masses of X, Y, and Z",["Is 1/3 of the total pressure","Depends on the IMFs between X, Y, and Z","Depends on the distance between collisions"],"Equal masses give different moles; partial pressure depends on mole fraction."],
+["Equal moles of N₂ and Ar are in a rigid container at 300 K with P(Ar) = 0.75 atm. Enough Ar is added to double its moles. Final total pressure?","2.25 atm",["0.75 atm","1.13 atm","1.50 atm"],"Initially 0.75 + 0.75 = 1.50 atm. Doubling Ar → P(Ar) = 1.50 atm; P(N₂) stays 0.75. Total = 2.25 atm."],
+["4.0 L He, 6.0 L N₂, and 10.0 L Ar, all at 0 °C and 1 atm, are pumped into an empty 8.0 L rigid container at 0 °C. Final pressure?","2.5 atm",["0.5 atm","1.0 atm","4.0 atm"],"20.0 L of gas at 1 atm compressed into 8.0 L: P = 1 × 20.0/8.0 = 2.5 atm (Boyle's law)."],
+["32.0 g each of O₂, CH₄, and SO₂ are mixed. What is the mole fraction of O₂?","0.286",["1.00","0.333","0.143"],"1.00 mol O₂, 1.995 mol CH₄, 0.4995 mol SO₂; 1.00/3.49 = 0.286."],
+["2NO(g) + O₂(g) → 2NO₂(g) runs to completion in a rigid vessel at constant T. The pressure will:","Decrease, because there are fewer product molecules than reactant molecules",["Increase, because products are heavier","Decrease, because products move slower","Stay the same, because mass is conserved"],"3 gas molecules → 2 gas molecules. Fewer particles → fewer wall collisions."],
+["What volume do 2.0 mol SO₃ occupy at 3.2 atm and 600 K?","30.8 L",["9.6 L","15.4 L","98.4 L"],"V = nRT/P = (2.0)(0.08206)(600)/3.2 = 30.8 L."],
+["Which gas sample occupies the largest volume?","2 mol at 760 mmHg and 546 K",["1 mol at 760 mmHg and 273 K","1 mol at 380 mmHg and 273 K","2 mol at 760 mmHg and 273 K"],"V ∝ nT/P. Option A: 2 × 546 / 1 = 1092, the largest (≈89.6 L)."],
+["A 2.30 L He balloon at 23.5 °C and 1.00 atm rises to 0.810 atm and 12.0 °C. New volume?","2.73 L",["2.84 L","1.45 L","2.21 L"],"V₂ = 2.30 × (1.00/0.810) × (285.15/296.65) = 2.73 L."],
+["A gas occupies 5.0 L. At constant T, how must P change to double V?","It must be halved",["It must be doubled","It must be quadrupled","Not enough information"],"Boyle's law: P and V are inversely proportional."],
+["2.00 L N₂ at 27 °C and 600 mmHg is heated to 5.00 L at constant P. Final temperature?","477 °C",["68 °C","120 °C","750 °C"],"T₂ = 300 K × 5.00/2.00 = 750 K = 477 °C. (750 is the Kelvin value, a trap.)"],
+["Four water molecules surround an ion in NaF(aq) with their H atoms pointing toward it. The ion is:","F⁻",["Na⁺","Neither; it's a NaF molecule","Either one"],"Water's δ⁺ hydrogens are attracted to the negative fluoride ion."],
+["Which ion has the strongest attraction to an adjacent water molecule?","Mg²⁺",["Na⁺","K⁺","Ca²⁺"],"Highest charge and smallest radius → strongest ion–dipole attraction."],
+["A sealed H₂ sample's observed pressure (62 atm) is higher than PV = nRT predicts (59 atm). Why?","The particles' combined volume isn't negligible, leaving less empty space",["Attractive forces between H₂ particles weaken wall collisions","The temperature is too high","H₂ molecules collide inelastically"],"Higher-than-ideal pressure points to particle volume, not attractions (which would lower P)."]
+];
+let AQ=[],ai=0,as=0;
+function app(){AQ=sh(APP).slice(0,12);ai=0;as=0;appQ()}
+function appQ(){
+  if(ai>=AQ.length){$("main").innerHTML=`<div class="card"><h2>Set complete</h2><p>Score: <b>${as}</b> / ${AQ.length}</p><button class="on" onclick="app()">New set of 12</button></div>`;return}
+  const [s,a,ds,w]=AQ[ai],o=sh([a,...ds]);
+  $("main").innerHTML=`<div class="mu">Question ${ai+1} of ${AQ.length} · Score ${as} · ${APP.length} in the bank</div><div class="pg"><i style="width:${ai/AQ.length*100}%"></i></div><div class="card" style="font-size:17px">${s}</div><div>${o.map(x=>`<button class="opt" data-a="${x==a?1:0}" onclick="appP(this,${x==a})">${x}</button>`).join("")}</div><div id="f"></div>`;
+}
+function appP(b,ok){
+  const [s,a,ds,w]=AQ[ai];document.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(x.dataset.a=="1")x.classList.add("ok")});
+  if(ok)as++;else b.classList.add("bad");
+  $("f").innerHTML=`<div class="card"><b>${a}.</b> ${w}</div><button class="on" onclick="ai++;appQ()">Next</button>`;
+}
+
+/* ---------- FRQ ---------- */
+const FRQS=[
+{t:"Review #1: Haloforms & Methanol",s:`<div class="tw"><table class="tb"><tr><th>Substance</th><th>Formula</th><th>Boiling point</th><th>Vapor pressure at 293 K</th></tr><tr><td>chloroform</td><td>CHCl₃</td><td>?</td><td>?</td></tr><tr><td>bromoform</td><td>CHBr₃</td><td>422 K</td><td>5.0 torr</td></tr><tr><td>methanol</td><td>CH₃OH</td><td>338 K</td><td>98 torr</td></tr></table></div>All three are liquids at room temperature.`,
+p:[["Identify all IMFs in pure CHCl₃, CHBr₃, and CH₃OH.","CHCl₃: <b>LDF + dipole–dipole</b>. CHBr₃: <b>LDF + dipole–dipole</b>. CH₃OH: <b>LDF + dipole–dipole + hydrogen bonding</b> (H on O)."],
+["Explain how the attractive forces differ between CHBr₃ and CH₃OH and how that affects their boiling points.","Only methanol can hydrogen-bond, but CHBr₃ has far more electrons (three Br atoms), so its electron cloud is much more <b>polarizable</b> and its <b>LDF are much stronger</b>. The total attraction in CHBr₃ is greater, so more energy is needed to separate its molecules → higher BP (422 K vs. 338 K) and lower vapor pressure."],
+["Predict CHCl₃'s boiling point and vapor pressure relative to CHBr₃.","Boiling point <b>less than 422 K</b>; vapor pressure <b>greater than 5.0 torr</b>. (Actual: ≈334 K, ≈160 torr.)"],
+["Which has greater London dispersion forces? Justify your predictions.","<b>CHBr₃</b>. Both are polar with the same shape and IMF types, but Br has more electrons than Cl, so CHBr₃'s cloud is more polarizable → stronger LDF. CHCl₃'s weaker LDF need less energy to overcome → lower BP, and more molecules escape the liquid → higher vapor pressure."]]},
+{t:"Review #5: N₂ in a Rigid Container",s:"A rigid 750. mL container holds pure N₂(g) at 45.0 °C and 1330 torr.",
+p:[["Convert P to atm, V to L, and T to K.","P = 1330 torr × (1 atm/760 torr) = <b>1.75 atm</b>. V = <b>0.750 L</b>. T = 45.0 + 273.15 = <b>318.2 K</b>."],
+["Calculate the moles and mass of N₂.","n = PV/RT = (1.75)(0.750)/[(0.08206)(318.15)] = <b>0.0503 mol</b>. Mass = 0.0503 mol × 28.02 g/mol = <b>1.41 g</b>."],
+["The sample is heated to 90.0 °C (V, n constant). Will P increase or decrease? Justify with KMT.","<b>Increase.</b> Higher T → higher average KE → particles move faster, so they collide with the walls <b>more frequently</b> and <b>with more force</b>. Because the volume is fixed, pressure rises."],
+["Calculate the new pressure.","P₂ = P₁(T₂/T₁) = 1.75 atm × (363.15 K / 318.15 K) = <b>2.00 atm</b>."]]},
+{t:"Review #6: Ne and Ar Flasks",s:"Two flasks are joined by a closed valve. Left: 4.0 L Ne(g) at 3.6 atm. Right: 8.0 L Ar(g) at 2.4 atm. Both are at the same temperature.",
+p:[["Compare the average kinetic energies of Ne and Ar.","<b>Equal</b>, because each sample is at the same temperature (KE_avg ∝ T)."],
+["Compare the average speeds.","<b>Ne is faster.</b> Same KE = ½mv², and a Ne atom (20.18 g/mol) has less mass than an Ar atom (39.95 g/mol), so v is larger."],
+["The valve opens (total V = 12.0 L, T constant). Calculate the total pressure.","Each gas expands into 12.0 L (Boyle): P(Ne) = 3.6 × 4.0/12.0 = 1.2 atm; P(Ar) = 2.4 × 8.0/12.0 = 1.6 atm. Dalton: <b>P_total = 2.8 atm</b>."]]},
+{t:"Review #7: Is H₂ Ideal?",s:`<div class="tw"><table class="tb"><tr><th>Sample</th><th>V</th><th>T</th><th>n</th><th>P (ideal)</th><th>P (observed)</th></tr><tr><td>#1</td><td>5.0 L</td><td>300 K</td><td>12.0 mol</td><td>?</td><td>62 atm</td></tr><tr><td>#2</td><td>15.0 L</td><td>300 K</td><td>3.0 mol</td><td>?</td><td>4.9 atm</td></tr></table></div>`,
+p:[["Calculate the ideal pressure for each sample.","#1: P = (12.0)(0.08206)(300)/5.0 = <b>59 atm</b>. #2: P = (3.0)(0.08206)(300)/15.0 = <b>4.9 atm</b>."],
+["Which sample is non-ideal? Is observed P greater or less than ideal?","<b>Sample #1</b>: observed (62 atm) is <b>greater than</b> calculated (59 atm). Sample #2 matches."],
+["Explain the deviation.","At such high pressure, the <b>combined volume of the H₂ particles is too large to be negligible</b> compared with the container, so there's less empty space to move through. Particles hit the walls more often than predicted → higher P. (Attractions would have made P <i>lower</i>, so they don't explain this result.)"]]},
+{t:"Review #8: He vs. O₂",s:"Two separate 1.00 L containers each hold 1.00 mol of gas at 300 K: one He, one O₂.",
+p:[["Which M–B curve is which?","<b>O₂</b> is the tall, narrow curve peaking at lower speed (heavier). <b>He</b> is the flatter, broader curve extending to higher speeds."],
+["Compare the kinetic energy of each.","Average KE is <b>equal</b>; both are at 300 K and KE_avg ∝ T. He makes up for its small mass with higher speed."],
+["Both gases are combined into a 2.00 L container at 300 K. Find P_total, X(He), and P(He).","P_total = nRT/V = (2.00)(0.08206)(300)/2.00 = <b>24.6 atm</b>. X(He) = 1.00/2.00 = <b>0.500</b>. P(He) = 0.500 × 24.6 = <b>12.3 atm</b>."]]},
+{t:"Practice Set #1: Polar Pairs",s:"Answer each comparison in full sentences, naming the IMFs in BOTH substances.",
+p:[["HF boils at 293 K; F₂ boils at 85 K. Explain.","HF: LDF, dipole–dipole, <b>hydrogen bonding</b> (H on F). F₂: nonpolar, <b>LDF only</b>. HF's hydrogen bonds are much stronger than F₂'s weak LDF, so more energy is needed to separate HF molecules."],
+["1-butanol and diethyl ether are isomers (C₄H₁₀O). Justify why butanol boils higher.","Both have LDF and dipole–dipole with the <b>same number of electrons</b>. Only 1-butanol has an <b>O–H</b> group, so it also hydrogen-bonds. Stronger total attractions → higher boiling point (117 °C vs. 35 °C)."],
+["Cl₂ (238 K) boils higher than HCl (188 K). Account for this.","HCl is polar (LDF + dipole–dipole); Cl₂ is nonpolar (LDF only). But Cl₂ has <b>34 electrons vs. 18</b>, so its larger electron cloud is more polarizable. Its LDF are strong enough to exceed HCl's combined LDF and dipole–dipole forces."],
+["Compare LDF and dipole–dipole forces in H₂S vs. H₂O.","<b>LDF</b>: stronger in H₂S, which has more electrons (18 vs. 10) and a larger, more polarizable cloud. <b>Dipole–dipole</b>: stronger in H₂O, because O is more electronegative than S, giving larger bond dipoles (and water also hydrogen-bonds)."],
+["Pyridine (C₅H₅N) is water-soluble but benzene (C₆H₆) is not. Explain.","Pyridine's N makes the molecule <b>polar</b>, and N's lone pair accepts <b>hydrogen bonds</b> from water. Benzene is symmetric and <b>nonpolar</b> with only LDF; water molecules attract each other more than they'd attract benzene, so benzene doesn't dissolve."]]},
+{t:"Lab: Molar Mass & Cage of Death",s:"(a) A 843 mL flask with dry air (1.18 g/L at 23.0 °C, 750. torr) has mass 157.70 g; filled with unknown gas, 158.08 g. (b) Pre-lab: 0.028 g Mg reacts with excess HCl, producing 31.0 mL H₂ over water at 22 °C; barometric pressure 746 mmHg; P(H₂O) at 22 °C = 19.8 mmHg.",
+p:[["(a) Find the mass of the unknown gas.","Air: 1.18 g/L × 0.843 L = 0.99 g. Empty flask: 157.70 − 0.99 = 156.71 g. Unknown gas: 158.08 − 156.71 = <b>1.37 g</b>."],
+["(a) Calculate the molar mass and the % error if the gas is CO₂ (44.01 g/mol).","n = (750/760 atm)(0.843 L)/[(0.08206)(296.15 K)] = <b>0.0342 mol</b>. M = 1.37/0.0342 = <b>40.0 g/mol</b>. % error = |40.0 − 44.01|/44.01 × 100 = <b>8.9%</b>. (Your key's 0.342 mol is a typo; 0.0342 is correct.)"],
+["(a) Could incomplete flushing (air left inside) explain the error? Could CO₂ colder than 23.0 °C?","Leftover air: <b>yes</b>. Air is lighter than CO₂, so the gas mass is too small → molar mass too <b>low</b> (matches 40.0 < 44.01). Colder CO₂: <b>no</b>. Colder gas is denser, so more mass → calculated molar mass too <b>high</b>, the opposite of the observed error."],
+["(b) Calculate P(H₂), moles of H₂, and the volume at STP.","P(H₂) = 746 − 19.8 = 726.2 mmHg = <b>0.9555 atm</b>. n = (0.9555)(0.0310 L)/[(0.08206)(295.15 K)] = <b>1.22 × 10⁻³ mol</b>. V_STP = 31.0 mL × (0.9555/1.00) × (273.15/295.15) = <b>27.4 mL</b>."],
+["(b) Theoretical moles of H₂ from the Mg, and the resulting molar volume.","n(Mg) = 0.028 g / 24.31 g/mol = 1.15 × 10⁻³ mol = n(H₂) (1:1 ratio). Using measured moles: 0.0274 L / 1.22 × 10⁻³ mol = 22.4 L/mol. Using theoretical moles: 0.0274/1.15 × 10⁻³ ≈ 23.8 L/mol (6% high), which could come from measuring too much gas, e.g., an air bubble trapped when inverting the tube."]]}
+];
+let fq=0;
+function frq(){
+  const A=FRQS[fq];
+  $("main").innerHTML=`<div class="card"><div class="mu">Free-response practice from your Unit 3 Review and practice sets. Write your answer to each part first, then reveal the model answer. Show units and sig figs on calculations; for “explain” parts, name the forces in <b>both</b> substances and connect them to energy.</div><div class="row">${FRQS.map((x,k)=>`<button class="${k==fq?"on":""}" onclick="fq=${k};frq()">${x.t}</button>`).join("")}</div></div>
+  <div class="card"><h3 style="margin:0 0 6px">${A.t}</h3><div>${A.s}</div></div>
+  ${A.p.map(([q,a],k)=>`<div class="card"><b>${String.fromCharCode(97+k)}.</b> ${q}<textarea placeholder="Your answer..." aria-label="Your answer for part ${String.fromCharCode(97+k)}"></textarea><button onclick="this.nextElementSibling.classList.toggle('hide')">Reveal model answer</button><div class="ans hide">${a}</div></div>`).join("")}`;
+}
+
+window.onload=go;
+</script>
+</body>
+</html>
